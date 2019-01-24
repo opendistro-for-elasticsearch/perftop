@@ -1,0 +1,172 @@
+{
+  "endpoint": "localhost:9600",
+  "gridOptions": {
+    "rows": 12,
+    "cols": 12
+  },
+  "graphs": {
+    "tables": [
+      {
+        "queryParams" : {
+          "metrics": "estimated,limitConfigured",
+          "aggregates": "avg,avg",
+          "dimensions": "type",
+          "sortBy": "estimated"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 9,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Circuit Breaker - estimated & limit",
+          "keys": false,
+          "fg": "blue",
+          "selectedFg": "blue",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "queueSize,rejected",
+          "aggregates": "sum,sum",
+          "dimensions": "type",
+          "sortBy": "rejected"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Thread Pool",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "MergeCount,MergeTime",
+          "aggregates": "sum,avg",
+          "dimensions": "indexName",
+          "sortBy": "MergeCount"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 3,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Merge",
+          "keys": false,
+          "fg": "cyan",
+          "selectedFg": "cyan",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "FlushCount,FlushTime",
+          "aggregates": "sum,avg",
+          "dimensions": "indexName",
+          "sortBy": "FlushCount"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 3,
+            "col": 6,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Flush",
+          "keys": false,
+          "fg": "cyan",
+          "selectedFg": "cyan",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "paging_majflt,paging_minflt",
+          "aggregates": "sum,sum",
+          "dimensions": "operation,index,shard",
+          "sortBy": "paging_majflt"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 6,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 12
+          },
+          "label": "Page Faults",
+          "keys": false,
+          "fg": "white",
+          "selectedFg": "white",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      }
+    ],
+    "bars": [
+      {
+        "queryParams" : {
+          "metrics": "tripped",
+          "aggregates": "sum",
+          "dimensions": "type"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 9,
+            "col": 6,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Circuit Breaker - tripped",
+          "labelColor": "blue",
+          "barWidth": 18,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      }
+    ],
+    "lines": [
+      {
+        "queryParams" : {
+          "metrics": "pendingTasksCount",
+          "aggregates": "sum",
+          "dimensions": "n/a"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 6,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Pending Task Count",
+          "showNthLabel": 5,
+          "showLegend": true,
+          "legend": { "width": 10 },
+          "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],
+          "refreshInterval": 5000
+        }
+      }
+    ]
+  }
+}

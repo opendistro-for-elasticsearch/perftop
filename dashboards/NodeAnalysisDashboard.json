@@ -1,0 +1,249 @@
+{
+  "endpoint": "localhost:9600",
+  "gridOptions": {
+    "rows": 12,
+    "cols": 12
+  },
+  "graphs": {
+    "tables": [
+      {
+        "queryParams" : {
+          "metrics": "requestCacheHitCount,requestCacheMissCount",
+          "aggregates": "sum,sum",
+          "dimensions": "indexName,shardID",
+          "nodeName": "#nodeName",
+          "sortBy": "requestCacheMissCount"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 8
+          },
+          "label": "Shard Request Cache Hit/Miss Count",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "indexingThrottleTime",
+          "aggregates": "avg",
+          "dimensions": "indexName",
+          "nodeName": "#nodeName",
+          "sortBy": "indexingThrottleTime"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 3,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Indexing Throttle Time",
+          "keys": false,
+          "fg": "cyan",
+          "selectedFg": "cyan",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "used",
+          "aggregates": "sum",
+          "dimensions": "type",
+          "dimensionFilters": ["OldGen", "Eden"],
+          "nodeName": "#nodeName",
+          "sortBy": "used"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 6,
+            "col": 6,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Heap usage of GC",
+          "keys": false,
+          "fg": "yellow",
+          "selectedFg": "yellow",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "wait",
+          "aggregates": "sum",
+          "dimensions": "name",
+          "nodeName": "#nodeName",
+          "sortBy": "name"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 9,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 7
+          },
+          "label": "Disk Wait Time",
+          "keys": false,
+          "fg": "white",
+          "selectedFg": "white",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "srate",
+          "aggregates": "sum",
+          "dimensions": "name",
+          "nodeName": "#nodeName",
+          "sortBy": "name"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 9,
+            "col": 7,
+            "rowSpan": 3,
+            "colSpan": 5
+          },
+          "label": "Disk Service Rate",
+          "keys": false,
+          "fg": "white",
+          "selectedFg": "white",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      }
+    ],
+    "bars": [
+      {
+        "queryParams" : {
+          "metrics": "dropRate4",
+          "aggregates": "sum",
+          "dimensions": "direction",
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 8,
+            "rowSpan": 3,
+            "colSpan": 2
+          },
+          "label": "Packet Drop Rate (IPv4)",
+          "labelColor": "red",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "dropRate6",
+          "aggregates": "sum",
+          "dimensions": "direction",
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 10,
+            "rowSpan": 3,
+            "colSpan": 2
+          },
+          "label": "Packet Drop Rate (IPv6)",
+          "labelColor": "yellow",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "collectionCount",
+          "aggregates": "sum",
+          "dimensions": "type",
+          "dimensionFilters": ["totFullGC", "totYoungGC"],
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 3,
+            "col": 6,
+            "rowSpan": 3,
+            "colSpan": 3
+          },
+          "label": "GC Collection Count",
+          "labelColor": "white",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "collectionTime",
+          "aggregates": "avg",
+          "dimensions": "type",
+          "dimensionFilters": ["totFullGC", "totYoungGC"],
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 3,
+            "col": 9,
+            "rowSpan": 3,
+            "colSpan": 3
+          },
+          "label": "GC Collection Time",
+          "labelColor": "white",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      }
+    ],
+    "lines": [
+      {
+        "queryParams" : {
+          "metrics": "cpu",
+          "aggregates": "sum",
+          "dimensions": "operation",
+          "dimensionFilters": ["GC"],
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 6,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 6
+          },
+          "label": "Garbage Collection CPU",
+          "showNthLabel": 5,
+          "showLegend": true,
+          "legend": { "width": 10 },
+          "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],
+          "refreshInterval": 5000
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "endpoint": "localhost:9600",
+  "gridOptions": {
+    "rows": 12,
+    "cols": 12
+  },
+  "graphs": {
+    "tables": [
+      {
+        "queryParams" : {
+          "metrics": "cpu,avgReadThroughputBps,avgWriteThroughputBps",
+          "aggregates": "sum,sum,sum",
+          "dimensions": "operation,index,shard",
+          "sortBy": "cpu"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 12
+          },
+          "label": "Resource Metrics",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "latency,itemCount",
+          "aggregates": "avg,sum",
+          "dimensions": "operation,status,indices",
+          "sortBy": "itemCount"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 4,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 7.5
+          },
+          "label": "Workload",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 1000
+        }
+      }
+    ],
+    "bars": [
+      {
+        "queryParams" : {
+          "metrics": "avgWriteThroughputBps",
+          "aggregates": "sum",
+          "dimensions": "operation"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 8,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Average Write Throughput (bps) per Operation",
+          "labelColor": "red",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "cpu",
+          "aggregates": "sum",
+          "dimensions": "operation"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 8,
+            "col": 6,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "CPU per Operation",
+          "labelColor": "blue",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 1000
+        }
+      }
+    ],
+    "lines": [
+      {
+        "queryParams" : {
+          "metrics": "cpu",
+          "aggregates": "sum",
+          "dimensions": "operation"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 4,
+            "col": 7.5,
+            "rowSpan": 4,
+            "colSpan": 4.5
+          },
+          "label": "ES Operation CPU per Node",
+          "showNthLabel": 5,
+          "showLegend": true,
+          "legend": { "width": 10 },
+          "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],
+          "refreshInterval": 5000
+        }
+      }
+    ]
+  }
+}

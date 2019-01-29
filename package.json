@@ -1,11 +1,11 @@
 {
-  "name": "es-top",
+  "name": "perf-top",
   "version": "1.0.0",
-  "description": "ESTop",
+  "description": "PerfTop",
   "bin": "bin.js",
   "scripts": {
-    "build": "pkg .",
-    "clean": "rm es-top-* 2>/dev/null || true && rm -rf ./node_modules",
+    "build": "pkg . --out-path ./build",
+    "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,13 +14,13 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "argparse": "1.0.10",
     "blessed": "0.1.54",
     "blessed-contrib": "4.8.8",
     "console-stamp": "0.2.7",
     "pkg": "4.3.6"
   },
   "devDependencies": {
-    "argparse": "1.0.10",
     "eslint": "^5.12.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.15.0",

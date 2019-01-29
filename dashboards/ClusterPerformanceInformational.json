@@ -8,10 +8,10 @@
     "tables": [
       {
         "queryParams" : {
-          "metrics": "estimated,limitConfigured",
+          "metrics": "CB_EstimatedSize,CB_ConfiguredSize",
           "aggregates": "avg,avg",
-          "dimensions": "type",
-          "sortBy": "estimated"
+          "dimensions": "CBType",
+          "sortBy": "CB_EstimatedSize"
         },
         "options": {
           "gridPosition": {
@@ -20,28 +20,28 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Circuit Breaker - estimated & limit",
+          "label": "Circuit Breaker - Estimated and Configured Limits",
           "keys": false,
           "fg": "blue",
           "selectedFg": "blue",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "queueSize,rejected",
+          "metrics": "ThreadPool_QueueSize,ThreadPool_RejectedReqs",
           "aggregates": "sum,sum",
-          "dimensions": "type",
-          "sortBy": "rejected"
+          "dimensions": "ThreadPoolType",
+          "sortBy": "ThreadPool_RejectedReqs"
         },
         "options": {
           "gridPosition": {
             "row": 0,
             "col": 0,
             "rowSpan": 3,
-            "colSpan": 6
+            "colSpan": 7
           },
           "label": "Thread Pool",
           "keys": false,
@@ -49,15 +49,15 @@
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "MergeCount,MergeTime",
+          "metrics": "Merge_Event,Merge_Time",
           "aggregates": "sum,avg",
-          "dimensions": "indexName",
-          "sortBy": "MergeCount"
+          "dimensions": "IndexName",
+          "sortBy": "Merge_Event"
         },
         "options": {
           "gridPosition": {
@@ -66,21 +66,21 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Merge",
+          "label": "Index Merge",
           "keys": false,
           "fg": "cyan",
           "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "FlushCount,FlushTime",
+          "metrics": "Flush_Event,Flush_Time",
           "aggregates": "sum,avg",
-          "dimensions": "indexName",
-          "sortBy": "FlushCount"
+          "dimensions": "IndexName",
+          "sortBy": "Flush_Event"
         },
         "options": {
           "gridPosition": {
@@ -89,21 +89,21 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Flush",
+          "label": "Index Flush",
           "keys": false,
           "fg": "cyan",
           "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "paging_majflt,paging_minflt",
+          "metrics": "Paging_MajfltRate,Paging_MinfltRate",
           "aggregates": "sum,sum",
-          "dimensions": "operation,index,shard",
-          "sortBy": "paging_majflt"
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "Paging_MajfltRate"
         },
         "options": {
           "gridPosition": {
@@ -118,16 +118,16 @@
           "selectedFg": "white",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       }
     ],
     "bars": [
       {
         "queryParams" : {
-          "metrics": "tripped",
+          "metrics": "CB_TrippedEvents",
           "aggregates": "sum",
-          "dimensions": "type"
+          "dimensions": "CBType"
         },
         "options": {
           "gridPosition": {
@@ -136,31 +136,31 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Circuit Breaker - tripped",
+          "label": "Circuit Breaker - Tripped (count)",
           "labelColor": "blue",
           "barWidth": 18,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       }
     ],
     "lines": [
       {
         "queryParams" : {
-          "metrics": "pendingTasksCount",
+          "metrics": "Master_PendingQueueSize",
           "aggregates": "sum",
           "dimensions": "n/a"
         },
         "options": {
           "gridPosition": {
             "row": 0,
-            "col": 6,
+            "col": 7,
             "rowSpan": 3,
-            "colSpan": 6
+            "colSpan": 5
           },
-          "label": "Pending Task Count",
-          "showNthLabel": 5,
+          "label": "Master Pending Tasks (count)",
+          "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },
           "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],

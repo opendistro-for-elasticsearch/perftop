@@ -8,10 +8,10 @@
     "tables": [
       {
         "queryParams" : {
-          "metrics": "cpu,avgReadThroughputBps,avgWriteThroughputBps",
+          "metrics": "CPU_Utilization,IO_ReadThroughtput,IO_WriteThroughput",
           "aggregates": "sum,sum,sum",
-          "dimensions": "operation,index,shard",
-          "sortBy": "cpu"
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "CPU_Utilization"
         },
         "options": {
           "gridPosition": {
@@ -26,15 +26,15 @@
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "latency,itemCount",
+          "metrics": "Latency,HTTP_RequestDocs",
           "aggregates": "avg,sum",
-          "dimensions": "operation,status,indices",
-          "sortBy": "itemCount"
+          "dimensions": "Operation,HTTPRespCode,Indices",
+          "sortBy": "HTTP_RequestDocs"
         },
         "options": {
           "gridPosition": {
@@ -49,16 +49,16 @@
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       }
     ],
     "bars": [
       {
         "queryParams" : {
-          "metrics": "avgWriteThroughputBps",
+          "metrics": "IO_WriteThroughput",
           "aggregates": "sum",
-          "dimensions": "operation"
+          "dimensions": "Operation"
         },
         "options": {
           "gridPosition": {
@@ -67,19 +67,19 @@
             "rowSpan": 4,
             "colSpan": 6
           },
-          "label": "Average Write Throughput (bps) per Operation",
+          "label": "Write Throughput (Bps) per Operation",
           "labelColor": "red",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "cpu",
+          "metrics": "CPU_Utilization",
           "aggregates": "sum",
-          "dimensions": "operation"
+          "dimensions": "Operation"
         },
         "options": {
           "gridPosition": {
@@ -88,21 +88,21 @@
             "rowSpan": 4,
             "colSpan": 6
           },
-          "label": "CPU per Operation",
+          "label": "CPU (cores) per Operation",
           "labelColor": "blue",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       }
     ],
     "lines": [
       {
         "queryParams" : {
-          "metrics": "cpu",
+          "metrics": "CPU_Utilization",
           "aggregates": "sum",
-          "dimensions": "operation"
+          "dimensions": "Operation"
         },
         "options": {
           "gridPosition": {
@@ -111,8 +111,8 @@
             "rowSpan": 4,
             "colSpan": 4.5
           },
-          "label": "ES Operation CPU per Node",
-          "showNthLabel": 5,
+          "label": "Elasticsearch Operation CPU per Node",
+          "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },
           "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],

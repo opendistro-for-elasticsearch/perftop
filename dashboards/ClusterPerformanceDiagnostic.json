@@ -8,10 +8,10 @@
     "tables": [
       {
         "queryParams" : {
-          "metrics": "wait",
-          "aggregates": "sum",
-          "dimensions": "name",
-          "sortBy": "wait"
+          "metrics": "Disk_WaitTime",
+          "aggregates": "avg",
+          "dimensions": "DiskName",
+          "sortBy": "Disk_WaitTime"
         },
         "options": {
           "gridPosition": {
@@ -26,15 +26,15 @@
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "srate",
+          "metrics": "Disk_ServiceRate",
           "aggregates": "sum",
-          "dimensions": "name",
-          "sortBy": "srate"
+          "dimensions": "DiskName",
+          "sortBy": "Disk_ServiceRate"
         },
         "options": {
           "gridPosition": {
@@ -49,16 +49,16 @@
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "used",
+          "metrics": "Heap_Used",
           "aggregates": "sum",
-          "dimensions": "type",
+          "dimensions": "MemType",
           "dimensionFilters": ["OldGen"],
-          "sortBy": "used"
+          "sortBy": "Heap_Used"
         },
         "options": {
           "gridPosition": {
@@ -73,16 +73,16 @@
           "selectedFg": "white",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "used",
+          "metrics": "Heap_Used",
           "aggregates": "sum",
-          "dimensions": "type",
+          "dimensions": "MemType",
           "dimensionFilters": ["Eden"],
-          "sortBy": "used"
+          "sortBy": "Heap_Used"
         },
         "options": {
           "gridPosition": {
@@ -97,15 +97,15 @@
           "selectedFg": "white",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "dropRate4",
+          "metrics": "Net_PacketDropRate4",
           "aggregates": "sum",
-          "dimensions": "direction",
-          "sortBy": "dropRate4"
+          "dimensions": "Direction",
+          "sortBy": "Net_PacketDropRate4"
         },
         "options": {
           "gridPosition": {
@@ -120,15 +120,15 @@
           "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "dropRate6",
+          "metrics": "Net_PacketDropRate6",
           "aggregates": "sum",
-          "dimensions": "direction",
-          "sortBy": "dropRate6"
+          "dimensions": "Direction",
+          "sortBy": "Net_PacketDropRate6"
         },
         "options": {
           "gridPosition": {
@@ -143,15 +143,15 @@
           "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "estimated,limitConfigured",
+          "metrics": "CB_EstimatedSize,CB_ConfiguredSize",
           "aggregates": "sum,sum",
-          "dimensions": "type",
-          "sortBy": "estimated"
+          "dimensions": "CBType",
+          "sortBy": "CB_EstimatedSize"
         },
         "options": {
           "gridPosition": {
@@ -160,21 +160,21 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Circuit Breaker - estimated & limit",
+          "label": "Circuit Breaker - Estimated and Configured Limits",
           "keys": false,
           "fg": "blue",
           "selectedFg": "blue",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "indexingThrottleTime",
+          "metrics": "Indexing_ThrottleTime",
           "aggregates": "avg",
-          "dimensions": "indexName",
-          "sortBy": "indexingThrottleTime"
+          "dimensions": "IndexName",
+          "sortBy": "Indexing_ThrottleTime"
         },
         "options": {
           "gridPosition": {
@@ -189,16 +189,16 @@
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       }
     ],
     "bars": [
       {
         "queryParams" : {
-          "metrics": "tripped",
+          "metrics": "CB_TrippedEvents",
           "aggregates": "sum",
-          "dimensions": "type"
+          "dimensions": "CBType"
         },
         "options": {
           "gridPosition": {
@@ -207,19 +207,19 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Circuit Breaker - tripped",
+          "label": "Circuit Breaker - Tripped Events (count)",
           "labelColor": "blue",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 2000
+          "refreshInterval": 5000
         }
       }
     ],
     "lines": [
       {
         "queryParams" : {
-          "metrics": "pendingTasksCount",
+          "metrics": "Master_PendingQueueSize",
           "aggregates": "sum",
           "dimensions": "n/a"
         },
@@ -230,8 +230,8 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Pending Task Count",
-          "showNthLabel": 5,
+          "label": "Master Pending Tasks (count)",
+          "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },
           "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],

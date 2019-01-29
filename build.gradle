@@ -67,11 +67,11 @@ test {
 }
 licenseHeaders.enabled = false
 
-// We are excluding plugin descriptor for ESTop
+// We are excluding plugin descriptor for PerfTop
 // The info here could be random
 esplugin {
-    name 'es-top'
-    description 'ESTop'
+    name 'perf-top'
+    description 'PerfTop'
     classname 'com.amazon.opendistro.performanceanalyzer.PerformanceAnalyzerApp'
     version "${es_version}"
     publishArtifact true
@@ -79,12 +79,12 @@ esplugin {
 
 
 bundlePlugin {
-    exclude "es-top*.jar"
+    exclude "perf-top*.jar"
     exclude "plugin-descriptor.properties"
-    from ("./") {
-        include "es-top-linux"
-        include "es-top-macos"
-        include "es-top-win.exe"
+    from ("build/") {
+        include "perf-top-linux"
+        include "perf-top-macos"
+        include "perf-top-win.exe"
     }
     from ("dashboards/") {
         into "dashboards/"

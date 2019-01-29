@@ -8,11 +8,11 @@
     "tables": [
       {
         "queryParams" : {
-          "metrics": "requestCacheHitCount,requestCacheMissCount",
+          "metrics": "Cache_Request_Hit,Cache_Request_Miss",
           "aggregates": "sum,sum",
-          "dimensions": "indexName,shardID",
+          "dimensions": "IndexName,ShardID",
           "nodeName": "#nodeName",
-          "sortBy": "requestCacheMissCount"
+          "sortBy": "Cache_Request_Miss"
         },
         "options": {
           "gridPosition": {
@@ -21,22 +21,22 @@
             "rowSpan": 3,
             "colSpan": 8
           },
-          "label": "Shard Request Cache Hit/Miss Count",
+          "label": "Shard Request Cache Hit and Miss",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "indexingThrottleTime",
+          "metrics": "Indexing_ThrottleTime",
           "aggregates": "avg",
-          "dimensions": "indexName",
+          "dimensions": "IndexName",
           "nodeName": "#nodeName",
-          "sortBy": "indexingThrottleTime"
+          "sortBy": "Indexing_ThrottleTime"
         },
         "options": {
           "gridPosition": {
@@ -51,17 +51,17 @@
           "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "used",
+          "metrics": "Heap_Used",
           "aggregates": "sum",
-          "dimensions": "type",
+          "dimensions": "MemType",
           "dimensionFilters": ["OldGen", "Eden"],
           "nodeName": "#nodeName",
-          "sortBy": "used"
+          "sortBy": "Heap_Used"
         },
         "options": {
           "gridPosition": {
@@ -70,29 +70,29 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Heap usage of GC",
+          "label": "Heap Usage of Old and Young GC",
           "keys": false,
           "fg": "yellow",
           "selectedFg": "yellow",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "wait",
+          "metrics": "Disk_WaitTime",
           "aggregates": "sum",
-          "dimensions": "name",
+          "dimensions": "DiskName",
           "nodeName": "#nodeName",
-          "sortBy": "name"
+          "sortBy": "DiskName"
         },
         "options": {
           "gridPosition": {
             "row": 9,
             "col": 0,
             "rowSpan": 3,
-            "colSpan": 7
+            "colSpan": 6
           },
           "label": "Disk Wait Time",
           "keys": false,
@@ -100,23 +100,23 @@
           "selectedFg": "white",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "srate",
+          "metrics": "Disk_ServiceRate",
           "aggregates": "sum",
-          "dimensions": "name",
+          "dimensions": "DiskName",
           "nodeName": "#nodeName",
-          "sortBy": "name"
+          "sortBy": "DiskName"
         },
         "options": {
           "gridPosition": {
             "row": 9,
-            "col": 7,
+            "col": 6,
             "rowSpan": 3,
-            "colSpan": 5
+            "colSpan": 6
           },
           "label": "Disk Service Rate",
           "keys": false,
@@ -124,16 +124,16 @@
           "selectedFg": "white",
           "selectedBg": " ",
           "columnSpacing": 1,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       }
     ],
     "bars": [
       {
         "queryParams" : {
-          "metrics": "dropRate4",
+          "metrics": "Net_PacketDropRate4",
           "aggregates": "sum",
-          "dimensions": "direction",
+          "dimensions": "Direction",
           "nodeName": "#nodeName"
         },
         "options": {
@@ -143,19 +143,19 @@
             "rowSpan": 3,
             "colSpan": 2
           },
-          "label": "Packet Drop Rate (IPv4)",
+          "label": "IPv4 Packet Drop Rate (count)",
           "labelColor": "red",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "dropRate6",
+          "metrics": "Net_PacketDropRate6",
           "aggregates": "sum",
-          "dimensions": "direction",
+          "dimensions": "Direction",
           "nodeName": "#nodeName"
         },
         "options": {
@@ -165,19 +165,19 @@
             "rowSpan": 3,
             "colSpan": 2
           },
-          "label": "Packet Drop Rate (IPv6)",
+          "label": "IPv6 Packet Drop Rate (count)",
           "labelColor": "yellow",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "collectionCount",
+          "metrics": "GC_Collection_Event",
           "aggregates": "sum",
-          "dimensions": "type",
+          "dimensions": "MemType",
           "dimensionFilters": ["totFullGC", "totYoungGC"],
           "nodeName": "#nodeName"
         },
@@ -188,19 +188,19 @@
             "rowSpan": 3,
             "colSpan": 3
           },
-          "label": "GC Collection Count",
+          "label": "GC Collection Events (count)",
           "labelColor": "white",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       },
       {
         "queryParams" : {
-          "metrics": "collectionTime",
+          "metrics": "GC_Collection_Time",
           "aggregates": "avg",
-          "dimensions": "type",
+          "dimensions": "MemType",
           "dimensionFilters": ["totFullGC", "totYoungGC"],
           "nodeName": "#nodeName"
         },
@@ -211,21 +211,21 @@
             "rowSpan": 3,
             "colSpan": 3
           },
-          "label": "GC Collection Time",
+          "label": "GC Collection Time (ms)",
           "labelColor": "white",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
-          "refreshInterval": 1000
+          "refreshInterval": 5000
         }
       }
     ],
     "lines": [
       {
         "queryParams" : {
-          "metrics": "cpu",
+          "metrics": "CPU_Utilization",
           "aggregates": "sum",
-          "dimensions": "operation",
+          "dimensions": "Operation",
           "dimensionFilters": ["GC"],
           "nodeName": "#nodeName"
         },
@@ -236,8 +236,8 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Garbage Collection CPU",
-          "showNthLabel": 5,
+          "label": "Garbage Collection CPU (cores)",
+          "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },
           "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],

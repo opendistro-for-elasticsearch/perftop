@@ -19,7 +19,7 @@ var path = require('path')
 var process = require('process')
 var util = require('util')
 
-var graphGenerator = require('./estop/generate-graphs.js')
+var graphGenerator = require('./perf-top/generate-graphs.js')
 
 // Parse command line arguments
 var parser = new argumentParser({})

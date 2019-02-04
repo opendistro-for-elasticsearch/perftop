@@ -13,9 +13,9 @@
  * permissions and limitations under the License.
  */
 
-var contrib = require('blessed-contrib')
-var dataGenerator = require('./generate-data.js')
-var queryValidator = require('./validate-query-params.js')
+var contrib = require('blessed-contrib');
+var dataGenerator = require('./generate-data.js');
+var queryValidator = require('./validate-query-params.js');
 
 /**
  * Creates the bar graph, which aggregates data on all nodes unless 'nodeName' defined.
@@ -28,27 +28,27 @@ var queryValidator = require('./validate-query-params.js')
  * @param {object} screen - blessed.screen() object.
  */
 function metricBar (endpoint, gridOptions, queryParams, options, screen) {
-  queryValidator.validateBarQueryParams(queryParams)
-  this.endpoint = endpoint
-  this.metrics = queryParams.metrics
-  this.aggregates = queryParams.aggregates
-  this.dimensions = queryParams.dimensions
-  this.nodeName = queryParams.nodeName
-  this.dimensionFilters = queryParams.dimensionFilters
+  queryValidator.validateBarQueryParams(queryParams);
+  this.endpoint = endpoint;
+  this.metrics = queryParams.metrics;
+  this.aggregates = queryParams.aggregates;
+  this.dimensions = queryParams.dimensions;
+  this.nodeName = queryParams.nodeName;
+  this.dimensionFilters = queryParams.dimensionFilters;
 
-  this.refreshInterval = options.refreshInterval
+  this.refreshInterval = options.refreshInterval;
 
-  var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen })
+  var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen });
   this.bar = grid.set(options.gridPosition.row, options.gridPosition.col, options.gridPosition.rowSpan,
-    options.gridPosition.colSpan, contrib.bar, options)
+    options.gridPosition.colSpan, contrib.bar, options);
 }
 
 /**
  * Wrapper to attach the bar object to screen.
  */
 metricBar.prototype.emit = function () {
-  this.bar.emit('attach')
-}
+  this.bar.emit('attach');
+};
 
 /**
  * Render the bar graph.
@@ -59,17 +59,17 @@ metricBar.prototype.emit = function () {
 metricBar.prototype.generateGraph = function (bar, screen) {
   generateMetricBarData(bar, function (barData) {
     if (Object.keys(barData).length !== 0) {
-      bar.bar.setData(barData)
-      screen.render()
+      bar.bar.setData(barData);
+      screen.render();
     } else {
       console.error(`Metric was not found for request with queryParams:\n
         endpoint: ${bar.endpoint}\n
         metrics: ${bar.metrics}\n
         agg:${bar.aggregates}\n
-        dim:${bar.dimensions}`)
+        dim:${bar.dimensions}`);
     }
-  })
-}
+  });
+};
 
 /**
  * Make a HTTP request to fetch data and format the parsed response for the bar graph.
@@ -82,48 +82,48 @@ metricBar.prototype.generateGraph = function (bar, screen) {
 function generateMetricBarData (metricBar, callback) {
   dataGenerator.getMetricData(metricBar.endpoint, metricBar.metrics, metricBar.aggregates, metricBar.dimensions, function (metricData) {
     if (metricBar.nodeName) {
-      var metricData = dataGenerator.getNodeData(metricData, metricBar.nodeName)
+      metricData = dataGenerator.getNodeData(metricData, metricBar.nodeName);
     }
 
     if (metricBar.dimensionFilters) {
-      var metricData = dataGenerator.getDimensionData(metricData, metricBar.dimensionFilters)
+      metricData = dataGenerator.getDimensionData(metricData, metricBar.dimensionFilters);
     }
 
-    var aggregatedData = dataGenerator.aggregateMetricData(metricData)
+    var aggregatedData = dataGenerator.aggregateMetricData(metricData);
     if (Object.keys(aggregatedData).length === 0) {
-      callback(aggregatedData)
-      return
+      callback(aggregatedData);
+      return;
     }
 
-    var dimensionIndex = aggregatedData.dimensions.findIndex(dimensionName => dimensionName === metricBar.dimensions)
-    var metricIndex = aggregatedData.dimensions.findIndex(metricName => metricName === metricBar.metrics)
+    var dimensionIndex = aggregatedData.dimensions.findIndex(dimensionName => dimensionName === metricBar.dimensions);
+    var metricIndex = aggregatedData.dimensions.findIndex(metricName => metricName === metricBar.metrics);
 
-    var aggData = {}
+    var aggData = {};
     aggregatedData.data.forEach(function (data) {
-      var dataDimension = data[dimensionIndex]
+      var dataDimension = data[dimensionIndex];
       if (data[metricIndex] === null) {
-        data[metricIndex] = 0
+        data[metricIndex] = 0;
       }
       if (!aggData[dataDimension]) {
-        aggData[dataDimension] = data[metricIndex]
+        aggData[dataDimension] = data[metricIndex];
       } else {
-        aggData[dataDimension] += data[metricIndex]
-        aggData[dataDimension] = Math.round(aggData[dataDimension] * 100) / 100
+        aggData[dataDimension] += data[metricIndex];
+        aggData[dataDimension] = Math.round(aggData[dataDimension] * 100) / 100;
       }
-    })
+    });
 
     // Sort by bar names
-    var barTitles = Object.keys(aggData)
-    barTitles.sort()
+    var barTitles = Object.keys(aggData);
+    barTitles.sort();
 
     // Format data to a 2D array
-    var barData = []
+    var barData = [];
     for (var i = 0; i < barTitles.length; i++) {
-      var title = barTitles[i]
-      barData.push(aggData[title])
+      var title = barTitles[i];
+      barData.push(aggData[title]);
     }
-    callback({ titles: barTitles, data: barData })
-  })
+    callback({ titles: barTitles, data: barData });
+  });
 }
 
-module.exports.metricBar = metricBar
+module.exports.metricBar = metricBar;

@@ -22,22 +22,25 @@ var util = require('util')
 var graphGenerator = require('./perf-top/generate-graphs.js')
 
 // Parse command line arguments
-var parser = new argumentParser({})
+var parser = new argumentParser({
+  description: 'For "Getting Started" guide and documentation, visit [LINK].' })
+
 parser.addArgument(
   [ '--json' ],
-  { help: 'json description' }
+  { required: true,
+    help: 'Relative path to the dashboard configuration JSON.' }
 )
 parser.addArgument(
   [ '--endpoint' ],
-  { help: 'endpoint description' }
+  { help: 'Endpoint for the Performance Analyzer queries. This can also be defined in the JSON.' }
 )
 parser.addArgument(
   [ '--nodename' ],
-  { help: 'nodename description' }
+  { help: 'Value to replace "#nodeName" in the JSON.' }
 )
 parser.addArgument(
   [ '--logfile' ],
-  { help: 'logfile description' }
+  { help: 'File to redirect STDERR to. If undefined, redirect to "/dev/null".' }
 )
 var args = parser.parseArgs()
 

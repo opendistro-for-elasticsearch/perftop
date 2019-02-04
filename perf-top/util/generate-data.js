@@ -13,8 +13,8 @@
  * permissions and limitations under the License.
  */
 
-var http = require('http')
-var url = require('url')
+var http = require('http');
+var url = require('url');
 
 /**
  * Makes a HTTP request to "{endpoint}/_performanceanalyzer/metrics?metrics=${metrics}&agg=${aggregates}&dim=${dimensions}&nodes=all"
@@ -27,18 +27,18 @@ var url = require('url')
  * @param {function(object):void} done - callback to be called when the response is parsed into a hashmap object.
  */
 function getMetricData (endpoint, metrics, aggregates, dimensions, done) {
-  var metricParam = (metrics) ? `metrics=${metrics}` : ''
-  var aggParam = (aggregates) ? `&agg=${aggregates}` : ''
-  var dimParam = (dimensions) ? `&dim=${dimensions}` : ''
+  var metricParam = (metrics) ? `metrics=${metrics}` : '';
+  var aggParam = (aggregates) ? `&agg=${aggregates}` : '';
+  var dimParam = (dimensions) ? `&dim=${dimensions}` : '';
 
-  var httpOptions = getHttpURLOptions(endpoint, `/_performanceanalyzer/metrics?${metricParam}${aggParam}${dimParam}&nodes=all`)
+  var httpOptions = getHttpURLOptions(endpoint, `/_performanceanalyzer/metrics?${metricParam}${aggParam}${dimParam}&nodes=all`);
   makeHttpRequest(httpOptions, function (response) {
     if (response === '') {
-      done({})
+      done({});
     } else {
-      done(getDataPerNode(response))
+      done(getDataPerNode(response));
     }
-  })
+  });
 }
 
 /**
@@ -48,13 +48,13 @@ function getMetricData (endpoint, metrics, aggregates, dimensions, done) {
  * @param {string} path - metric query request path.
  */
 function getHttpURLOptions (endpoint, path) {
-  endpoint = endpoint.startsWith('http://') ? endpoint : 'http://' + endpoint
-  var httpURL = url.parse(url.resolve(endpoint, path))
+  endpoint = endpoint.startsWith('http://') ? endpoint : 'http://' + endpoint;
+  var httpURL = url.parse(url.resolve(endpoint, path));
   return {
     host: httpURL.hostname,
     port: (httpURL.port === null) ? 80 : httpURL.port,
     path: httpURL.path
-  }
+  };
 }
 
 /**
@@ -64,22 +64,22 @@ function getHttpURLOptions (endpoint, path) {
  * @param {string} done - callback for the HTTP response.
  */
 function makeHttpRequest (httpOptions, done) {
-  var rawData = ''
+  var rawData = '';
   var respond = function (response) {
     response.on('data', function (chunk) {
-      rawData += chunk
-    })
+      rawData += chunk;
+    });
     response.on('end', function () {
-      done(rawData)
-    })
-  }
+      done(rawData);
+    });
+  };
 
-  var req = http.request(httpOptions, respond)
+  var req = http.request(httpOptions, respond);
   req.on('error', function (error) {
-    console.error(error)
-    done('')
-  })
-  req.end()
+    console.error(error);
+    done('');
+  });
+  req.end();
 }
 
 /**
@@ -90,26 +90,26 @@ function makeHttpRequest (httpOptions, done) {
  * @param {string} done - callback for the HTTP response.
  */
 function getMetricUnits (endpoint, done) {
-  var httpOptions = getHttpURLOptions(endpoint, '/_performanceanalyzer/metrics/units')
+  var httpOptions = getHttpURLOptions(endpoint, '/_performanceanalyzer/metrics/units');
   makeHttpRequest(httpOptions, function (response) {
     if (response === '') {
-      console.error('Failed to retrieve units for metrics. HTTP response was empty.')
-      done({})
+      console.error('Failed to retrieve units for metrics. HTTP response was empty.');
+      done({});
     }
     try {
-      var jsonData = JSON.parse(response)
+      var jsonData = JSON.parse(response);
       if (Object.keys(jsonData).length === 1 && 'error' in jsonData) {
         console.error(`Failed to retrieve units for metrics. HTTP response was:
-          ${response}`)
-        done({})
+          ${response}`);
+        done({});
       }
-      done(jsonData)
+      done(jsonData);
     } catch (e) {
       console.error(`HTTP Response for metricUnits was not in JSON format:
-        ${response}`)
-      done({})
+        ${response}`);
+      done({});
     }
-  })
+  });
 }
 
 /**
@@ -122,17 +122,17 @@ function getMetricUnits (endpoint, done) {
  */
 function parseNumberData (data) {
   if (data === null) {
-    return 'null'
+    return 'null';
   } else if (data === '') {
-    return data
+    return data;
   }
-  var parsedData = Math.round(data * 100) / 100
+  var parsedData = Math.round(data * 100) / 100;
   if (isNaN(parsedData)) {
-    return data
+    return data;
   } else if (parsedData < 100) {
-    return parsedData
+    return parsedData;
   } else {
-    return Math.round(parsedData)
+    return Math.round(parsedData);
   }
 }
 
@@ -144,10 +144,10 @@ function parseNumberData (data) {
  * @param {string} sortBy - a string value from `dimensions` to sort the `data` by.
  */
 function sortDataByDecreasingOrder (dimensions, data, sortBy) {
-  var sortByIndex = dimensions.indexOf(sortBy)
+  var sortByIndex = dimensions.indexOf(sortBy);
   data.sort(function (a, b) {
-    return b[sortByIndex] - a[sortByIndex]
-  })
+    return b[sortByIndex] - a[sortByIndex];
+  });
 }
 
 /**
@@ -162,27 +162,27 @@ function sortDataByDecreasingOrder (dimensions, data, sortBy) {
  *                       data: [[data1, nodeName1], [data2, nodeName1], [data3, nodeName2], ...]}
  */
 function aggregateMetricData (metricData) {
-  var allDimensions = new Set()
-  var allData = []
+  var allDimensions = new Set();
+  var allData = [];
   for (var nodeName in metricData) {
     if (nodeName === '' || typeof metricData[nodeName] === 'undefined') {
       console.error(`Undefined data:\n
-              ${metricData[nodeName]}`)
-      continue
+              ${metricData[nodeName]}`);
+      continue;
     }
-    metricData[nodeName]['fields'].forEach(function (dimensions) {
-      allDimensions.add(dimensions)
-    })
+    metricData[nodeName].fields.forEach(function (dimensions) {
+      allDimensions.add(dimensions);
+    });
 
-    metricData[nodeName]['data'].forEach(function (data) {
-      data.push(nodeName)
-      allData.push(data)
-    })
+    metricData[nodeName].data.forEach(function (data) {
+      data.push(nodeName);
+      allData.push(data);
+    });
   }
-  allDimensions = Array.from(allDimensions)
-  allDimensions.push('node')
+  allDimensions = Array.from(allDimensions);
+  allDimensions.push('node');
 
-  return { dimensions: allDimensions, data: allData }
+  return { dimensions: allDimensions, data: allData };
 }
 
 /**
@@ -196,44 +196,47 @@ function aggregateMetricData (metricData) {
  *                                   data: [[data], [data], ...]}
  */
 function getDataPerNode (rawData) {
+  var jsonData = {};
   try {
-    var jsonData = JSON.parse(rawData)
+    jsonData = JSON.parse(rawData);
     if (Object.keys(jsonData).length === 1 && 'error' in jsonData) {
       console.error(`Failed to retrieve units for metrics. HTTP response was:
-        ${response}`)
-      return {}
+        ${rawData}`);
+      return {};
     }
   } catch (e) {
     console.error(`HTTP Response for per-node data was not in JSON format:
-      ${rawData}`)
-    return {}
+      ${rawData}`);
+    return {};
   }
 
-  var allData = {}
+  var allData = {};
   for (var nodeName in jsonData) {
-    var nodeDimensions = []
-    var nodeData = []
+    var nodeDimensions = [];
+    var nodeData = [];
     if (!('data' in jsonData[nodeName])) {
-
-    }
-    if (!('fields' in jsonData[nodeName]['data']) && !('records' in jsonData[nodeName]['data'])) {
       console.error(`Data returned for nodeName=${nodeName} was not in an unexpected format:
-        ${JSON.stringify(jsonData[nodeName])}`)
-      continue
+        ${JSON.stringify(jsonData[nodeName])}`);
+      continue;
     }
-    jsonData[nodeName]['data']['fields'].forEach(function (field) {
-      if (field['name'] === null) {
-        field['name'] = 'N/A'
+    if (!('fields' in jsonData[nodeName].data) && !('records' in jsonData[nodeName].data)) {
+      console.error(`Data returned for nodeName=${nodeName} was not in an unexpected format:
+        ${JSON.stringify(jsonData[nodeName])}`);
+      continue;
+    }
+    jsonData[nodeName].data.fields.forEach(function (field) {
+      if (field.name === null) {
+        field.name = 'N/A';
       }
-      nodeDimensions.push(field['name'])
-    })
-    jsonData[nodeName]['data']['records'].forEach(function (record) {
-      nodeData.push(record.map(parseNumberData))
-    })
+      nodeDimensions.push(field.name);
+    });
+    jsonData[nodeName].data.records.forEach(function (record) {
+      nodeData.push(record.map(parseNumberData));
+    });
 
-    allData[nodeName] = { fields: nodeDimensions, data: nodeData }
+    allData[nodeName] = { fields: nodeDimensions, data: nodeData };
   }
-  return allData
+  return allData;
 }
 
 /**
@@ -249,16 +252,16 @@ function getDataPerNode (rawData) {
  *                                   data: [[data1], [data2]]}
  */
 function getNodeData (metricData, nodeName) {
-  var node = Object.keys(metricData).filter(lineName => lineName.startsWith(nodeName))
-  var nodeData = {}
+  var node = Object.keys(metricData).filter(lineName => lineName.startsWith(nodeName));
+  var nodeData = {};
   if (node.length === 0) {
-    console.error(`No matches for nodeName=${nodeName}`)
+    console.error(`No matches for nodeName=${nodeName}`);
   } else if (node.length > 1) {
-    console.error(`Too many matches for nodeName=${nodeName}`)
+    console.error(`Too many matches for nodeName=${nodeName}`);
   } else {
-    nodeData[node[0]] = metricData[node]
+    nodeData[node[0]] = metricData[node];
   }
-  return nodeData
+  return nodeData;
 }
 
 /**
@@ -278,19 +281,19 @@ function getDimensionData (metricData, dimensionFilters) {
   for (var nodeName in metricData) {
     if (nodeName === '' || typeof metricData[nodeName] === 'undefined') {
       console.error(`Undefined data:\n
-              ${metricData[nodeName]}`)
-      continue
+              ${metricData[nodeName]}`);
+      continue;
     }
-    var dimensionData = metricData[nodeName].data.filter(data => dimensionFilters.includes(data[0]))
-    metricData[nodeName].data = dimensionData
+    var dimensionData = metricData[nodeName].data.filter(data => dimensionFilters.includes(data[0]));
+    metricData[nodeName].data = dimensionData;
   }
-  return metricData
+  return metricData;
 }
 
-module.exports.getMetricData = getMetricData
-module.exports.getMetricUnits = getMetricUnits
-module.exports.getNodeData = getNodeData
-module.exports.getDimensionData = getDimensionData
-module.exports.aggregateMetricData = aggregateMetricData
-module.exports.parseNumberData = parseNumberData
-module.exports.sortDataByDecreasingOrder = sortDataByDecreasingOrder
+module.exports.getMetricData = getMetricData;
+module.exports.getMetricUnits = getMetricUnits;
+module.exports.getNodeData = getNodeData;
+module.exports.getDimensionData = getDimensionData;
+module.exports.aggregateMetricData = aggregateMetricData;
+module.exports.parseNumberData = parseNumberData;
+module.exports.sortDataByDecreasingOrder = sortDataByDecreasingOrder;

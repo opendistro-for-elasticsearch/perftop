@@ -19,7 +19,7 @@ From Mac:
 To run this on a cluster node where Performance Analyzer is running,
 scp `perf-top-linux` and `dashboard/*` and the JSON config file to the node.
 ```
-./perf-top-linux --json dashboards/ClusterOverview.json --endpoint localhost:9600
+./perf-top-linux --json $JSON --endpoint localhost:9600
 ```
 
 For stderr logging, add `--logfile $logfile`.

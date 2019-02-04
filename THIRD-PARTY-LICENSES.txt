@@ -25,7 +25,7 @@ SOFTWARE.
 
 -----
 
-** eslint-plugin-import; version 2.15.0 -- https://www.npmjs.com/package/eslint-plugin-import
+** eslint-plugin-import; version 2.16.0 -- https://www.npmjs.com/package/eslint-plugin-import
 Copyright (c) 2015 Ben Mosher
 
 The MIT License (MIT)

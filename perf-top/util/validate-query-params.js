@@ -20,10 +20,10 @@
  */
 function validateBarQueryParams (queryParams) {
   if (queryParams.metrics.split(',').length > 1) {
-    console.error('Only one metric is supported for bar graphs.')
+    console.error('Only one metric is supported for bar graphs.');
   }
   if (queryParams.dimensions.split(',').length > 1) {
-    console.error('Only one dimension is supported for bar graphs.')
+    console.error('Only one dimension is supported for bar graphs.');
   }
 }
 
@@ -34,10 +34,10 @@ function validateBarQueryParams (queryParams) {
  */
 function validateLineQueryParams (queryParams) {
   if (queryParams.metrics.split(',').length > 1) {
-    console.error('Only one metric is supported for bar graphs.')
+    console.error('Only one metric is supported for bar graphs.');
   }
   if (queryParams.dimensions.split(',').length > 1) {
-    console.error('Only one dimension is supported for bar graphs.')
+    console.error('Only one dimension is supported for bar graphs.');
   }
 }
 
@@ -48,10 +48,10 @@ function validateLineQueryParams (queryParams) {
  */
 function validateTableQueryParams (queryParams) {
   if (!queryParams.sortBy) {
-    console.error('Provide "sortBy" field for the table graph.')
+    console.error('Provide "sortBy" field for the table graph.');
   }
 }
 
-module.exports.validateTableQueryParams = validateTableQueryParams
-module.exports.validateBarQueryParams = validateBarQueryParams
-module.exports.validateLineQueryParams = validateLineQueryParams
+module.exports.validateTableQueryParams = validateTableQueryParams;
+module.exports.validateBarQueryParams = validateBarQueryParams;
+module.exports.validateLineQueryParams = validateLineQueryParams;

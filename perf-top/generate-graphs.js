@@ -13,13 +13,13 @@
  * permissions and limitations under the License.
  */
 
-require('console-stamp')(console, '[HH:MM:ss.l]')
+require('console-stamp')(console, '[HH:MM:ss.l]');
 
-var dataGenerator = require('./util/generate-data.js')
-var metricBar = require('./util/metric-bar.js')
-var metricGraphs = require('./util/metric-graphs.js')
-var metricLine = require('./util/metric-line.js')
-var metricTable = require('./util/metric-table.js')
+var dataGenerator = require('./util/generate-data.js');
+var metricBar = require('./util/metric-bar.js');
+var metricGraphs = require('./util/metric-graphs.js');
+var metricLine = require('./util/metric-line.js');
+var metricTable = require('./util/metric-table.js');
 
 /**
  * Initialize all the graph objects and generate them.
@@ -27,29 +27,29 @@ var metricTable = require('./util/metric-table.js')
  * @param {object} jsonData - hashmap of dashboard configuration.
  */
 function initAndStart (jsonData) {
-  var graphs = new metricGraphs.metricGraphs()
+  var graphs = new metricGraphs.metricGraphs();
   dataGenerator.getMetricUnits(jsonData.endpoint, function (metricUnits) {
     for (var graphType in jsonData.graphs) {
       for (var graphParamOption in jsonData.graphs[graphType]) {
-        var graphConfig = jsonData.graphs[graphType][graphParamOption]
-        var graph
+        var graphConfig = jsonData.graphs[graphType][graphParamOption];
+        var graph;
         if ((graphType === 'bars')) {
           graph = new metricBar.metricBar(jsonData.endpoint, jsonData.gridOptions, graphConfig.queryParams,
-            graphConfig.options, graphs.screen)
+            graphConfig.options, graphs.screen);
         } else if ((graphType === 'lines')) {
           graph = new metricLine.metricLine(jsonData.endpoint, jsonData.gridOptions, graphConfig.queryParams,
-            graphConfig.options, graphs.screen)
+            graphConfig.options, graphs.screen);
         } else if (graphType === 'tables') {
           graph = new metricTable.metricTable(jsonData.endpoint, jsonData.gridOptions, graphConfig.queryParams,
-            graphConfig.options, graphs.screen, metricUnits)
+            graphConfig.options, graphs.screen, metricUnits);
         }
-        graphs.allGraphs.push(graph)
+        graphs.allGraphs.push(graph);
       }
     }
     // Generate graph on screen
-    graphs.resizeGraphsToScreen()
-    graphs.start()
-  })
+    graphs.resizeGraphsToScreen();
+    graphs.start();
+  });
 }
 
-module.exports.initAndStart = initAndStart
+module.exports.initAndStart = initAndStart;

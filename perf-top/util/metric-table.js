@@ -13,9 +13,9 @@
  * permissions and limitations under the License.
  */
 
-var contrib = require('blessed-contrib')
-var dataGenerator = require('./generate-data.js')
-var queryValidator = require('./validate-query-params.js')
+var contrib = require('blessed-contrib');
+var dataGenerator = require('./generate-data.js');
+var queryValidator = require('./validate-query-params.js');
 
 /**
  * Creates a table graph, which represents data per node-level.
@@ -29,33 +29,33 @@ var queryValidator = require('./validate-query-params.js')
  * @param {object} metricUnits - hashmap of metrics/dimensions and their units.
  */
 function metricTable (endpoint, gridOptions, queryParams, options, screen, metricUnits) {
-  queryValidator.validateTableQueryParams(queryParams)
-  this.endpoint = endpoint
-  this.metrics = queryParams.metrics
-  this.aggregates = queryParams.aggregates
-  this.dimensions = queryParams.dimensions
-  this.sortBy = queryParams.sortBy
-  this.nodeName = queryParams.nodeName
-  this.dimensionFilters = queryParams.dimensionFilters
+  queryValidator.validateTableQueryParams(queryParams);
+  this.endpoint = endpoint;
+  this.metrics = queryParams.metrics;
+  this.aggregates = queryParams.aggregates;
+  this.dimensions = queryParams.dimensions;
+  this.sortBy = queryParams.sortBy;
+  this.nodeName = queryParams.nodeName;
+  this.dimensionFilters = queryParams.dimensionFilters;
 
-  this.labels = (this.dimensions + ',' + this.metrics + ',node').split(',')
-  appendMetricUnits(this.labels, metricUnits)
+  this.labels = (this.dimensions + ',' + this.metrics + ',node').split(',');
+  appendMetricUnits(this.labels, metricUnits);
 
-  options.columnWidth = this.labels.map(label => label.length + 10)
+  options.columnWidth = this.labels.map(label => label.length + 10);
 
-  this.refreshInterval = options.refreshInterval
+  this.refreshInterval = options.refreshInterval;
 
-  var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen })
+  var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen });
   this.table = grid.set(options.gridPosition.row, options.gridPosition.col, options.gridPosition.rowSpan, options.gridPosition.colSpan,
-    contrib.table, options)
+    contrib.table, options);
 }
 
 /**
  * Wrapper to attach the table object to screen.
  */
 metricTable.prototype.emit = function () {
-  this.table.emit('attach')
-}
+  this.table.emit('attach');
+};
 
 /**
  * Render the table graph.
@@ -66,17 +66,17 @@ metricTable.prototype.emit = function () {
 metricTable.prototype.generateGraph = function (table, screen) {
   generateMetricTableData(table, function (tableData) {
     if (Object.keys(tableData).length !== 0) {
-      table.table.setData(tableData)
-      screen.render()
+      table.table.setData(tableData);
+      screen.render();
     } else {
       console.error(`Metric was not found for request with queryParams:\n
         endpoint: ${table.endpoint}\n
         metrics: ${table.metrics}\n
         agg:${table.aggregates}\n
-        dim:${table.dimensions}`)
+        dim:${table.dimensions}`);
     }
-  })
-}
+  });
+};
 
 /**
  * Make a HTTP request to fetch data and format the parsed response.
@@ -94,21 +94,21 @@ function generateMetricTableData (metricTable, callback) {
   dataGenerator.getMetricData(metricTable.endpoint, metricTable.metrics, metricTable.aggregates, metricTable.dimensions,
     function (metricData) {
       if (metricTable.nodeName) {
-        metricData = dataGenerator.getNodeData(metricData, metricTable.nodeName)
+        metricData = dataGenerator.getNodeData(metricData, metricTable.nodeName);
       }
 
       if (metricTable.dimensionFilters) {
-        metricData = dataGenerator.getDimensionData(metricData, metricTable.dimensionFilters)
+        metricData = dataGenerator.getDimensionData(metricData, metricTable.dimensionFilters);
       }
 
-      var aggregatedData = dataGenerator.aggregateMetricData(metricData)
+      var aggregatedData = dataGenerator.aggregateMetricData(metricData);
       if (Object.keys(aggregatedData).length === 0) {
-        callback({})
+        callback({});
       } else {
-        dataGenerator.sortDataByDecreasingOrder(aggregatedData.dimensions, aggregatedData.data, metricTable.sortBy)
-        callback({ 'headers': metricTable.labels, 'data': aggregatedData.data })
+        dataGenerator.sortDataByDecreasingOrder(aggregatedData.dimensions, aggregatedData.data, metricTable.sortBy);
+        callback({ 'headers': metricTable.labels, 'data': aggregatedData.data });
       }
-    })
+    });
 }
 
 /**
@@ -120,10 +120,10 @@ function generateMetricTableData (metricTable, callback) {
 function appendMetricUnits (columns, metricUnits) {
   for (var i = 0; i < columns.length; i++) {
     if (columns[i] in metricUnits) {
-      columns[i] = `${columns[i]} (${metricUnits[columns[i]]})`
+      columns[i] = `${columns[i]} (${metricUnits[columns[i]]})`;
     }
   }
-  return columns
+  return columns;
 }
 
-module.exports.metricTable = metricTable
+module.exports.metricTable = metricTable;

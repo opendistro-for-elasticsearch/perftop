@@ -6,6 +6,7 @@
   "scripts": {
     "build": "pkg . --out-path ./build",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
+    "lint": "eslint perf-top/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +24,7 @@
   "devDependencies": {
     "eslint": "^5.12.1",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0"

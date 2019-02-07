@@ -9,7 +9,7 @@
       {
         "queryParams" : {
           "metrics": "CB_EstimatedSize,CB_ConfiguredSize",
-          "aggregates": "avg,avg",
+          "aggregates": "max,max",
           "dimensions": "CBType",
           "sortBy": "CB_EstimatedSize"
         },
@@ -32,7 +32,7 @@
       {
         "queryParams" : {
           "metrics": "ThreadPool_QueueSize,ThreadPool_RejectedReqs",
-          "aggregates": "sum,sum",
+          "aggregates": "max,sum",
           "dimensions": "ThreadPoolType",
           "sortBy": "ThreadPool_RejectedReqs"
         },
@@ -149,8 +149,8 @@
       {
         "queryParams" : {
           "metrics": "Master_PendingQueueSize",
-          "aggregates": "sum",
-          "dimensions": "n/a"
+          "aggregates": "max",
+          "dimensions": ""
         },
         "options": {
           "gridPosition": {

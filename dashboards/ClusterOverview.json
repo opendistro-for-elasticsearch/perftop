@@ -111,7 +111,7 @@
             "rowSpan": 4,
             "colSpan": 4.5
           },
-          "label": "Elasticsearch Operation CPU per Node",
+          "label": "Elasticsearch Operation CPU (cores) per Node",
           "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },

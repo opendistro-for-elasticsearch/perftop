@@ -27,9 +27,9 @@ var url = require('url');
  * @param {function(object):void} done - callback to be called when the response is parsed into a hashmap object.
  */
 function getMetricData (endpoint, metrics, aggregates, dimensions, done) {
-  var metricParam = (metrics) ? `metrics=${metrics}` : '';
-  var aggParam = (aggregates) ? `&agg=${aggregates}` : '';
-  var dimParam = (dimensions) ? `&dim=${dimensions}` : '';
+  var metricParam = (metrics) ? `metrics=${metrics}` : 'metrics=';
+  var aggParam = (aggregates) ? `&agg=${aggregates}` : '&agg=';
+  var dimParam = (dimensions) ? `&dim=${dimensions}` : '&dim=';
 
   var httpOptions = getHttpURLOptions(endpoint, `/_performanceanalyzer/metrics?${metricParam}${aggParam}${dimParam}&nodes=all`);
   makeHttpRequest(httpOptions, function (response) {
@@ -200,7 +200,7 @@ function getDataPerNode (rawData) {
   try {
     jsonData = JSON.parse(rawData);
     if (Object.keys(jsonData).length === 1 && 'error' in jsonData) {
-      console.error(`Failed to retrieve units for metrics. HTTP response was:
+      console.error(`Failed to retrieve data for metrics. HTTP response was:
         ${rawData}`);
       return {};
     }

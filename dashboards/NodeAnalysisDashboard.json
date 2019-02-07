@@ -45,7 +45,7 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Indexing Throttle Time",
+          "label": "Average Indexing Throttle Time",
           "keys": false,
           "fg": "cyan",
           "selectedFg": "cyan",
@@ -57,7 +57,7 @@
       {
         "queryParams" : {
           "metrics": "Heap_Used",
-          "aggregates": "sum",
+          "aggregates": "max",
           "dimensions": "MemType",
           "dimensionFilters": ["OldGen", "Eden"],
           "nodeName": "#nodeName",
@@ -70,7 +70,7 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Heap Usage of Old and Young GC",
+          "label": "Maxiumum Heap Usage of Old and Young GC",
           "keys": false,
           "fg": "yellow",
           "selectedFg": "yellow",
@@ -82,7 +82,7 @@
       {
         "queryParams" : {
           "metrics": "Disk_WaitTime",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "DiskName",
           "nodeName": "#nodeName",
           "sortBy": "DiskName"
@@ -94,7 +94,7 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Disk Wait Time",
+          "label": "Average Disk Wait Time",
           "keys": false,
           "fg": "white",
           "selectedFg": "white",
@@ -106,7 +106,7 @@
       {
         "queryParams" : {
           "metrics": "Disk_ServiceRate",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "DiskName",
           "nodeName": "#nodeName",
           "sortBy": "DiskName"
@@ -118,7 +118,7 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Disk Service Rate",
+          "label": "Average Disk Service Rate",
           "keys": false,
           "fg": "white",
           "selectedFg": "white",
@@ -132,7 +132,7 @@
       {
         "queryParams" : {
           "metrics": "Net_PacketDropRate4",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "Direction",
           "nodeName": "#nodeName"
         },
@@ -143,7 +143,7 @@
             "rowSpan": 3,
             "colSpan": 2
           },
-          "label": "IPv4 Packet Drop Rate (count)",
+          "label": "IPv4 Packet Drop Rate (packets/s)",
           "labelColor": "red",
           "barWidth": 12,
           "xOffset": 2,
@@ -154,7 +154,7 @@
       {
         "queryParams" : {
           "metrics": "Net_PacketDropRate6",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "Direction",
           "nodeName": "#nodeName"
         },
@@ -165,7 +165,7 @@
             "rowSpan": 3,
             "colSpan": 2
           },
-          "label": "IPv6 Packet Drop Rate (count)",
+          "label": "IPv6 Packet Drop Rate (packets/s)",
           "labelColor": "yellow",
           "barWidth": 12,
           "xOffset": 2,
@@ -188,7 +188,7 @@
             "rowSpan": 3,
             "colSpan": 3
           },
-          "label": "GC Collection Events (count)",
+          "label": "Total GC Collection Events (count)",
           "labelColor": "white",
           "barWidth": 12,
           "xOffset": 2,
@@ -199,7 +199,7 @@
       {
         "queryParams" : {
           "metrics": "GC_Collection_Time",
-          "aggregates": "avg",
+          "aggregates": "sum",
           "dimensions": "MemType",
           "dimensionFilters": ["totFullGC", "totYoungGC"],
           "nodeName": "#nodeName"
@@ -211,7 +211,7 @@
             "rowSpan": 3,
             "colSpan": 3
           },
-          "label": "GC Collection Time (ms)",
+          "label": "Total GC Collection Time (ms)",
           "labelColor": "white",
           "barWidth": 12,
           "xOffset": 2,

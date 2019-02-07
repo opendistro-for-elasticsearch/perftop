@@ -20,7 +20,7 @@
             "rowSpan": 3,
             "colSpan": 4
           },
-          "label": "Disk Wait Time",
+          "label": "Average Disk Wait Time",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -32,7 +32,7 @@
       {
         "queryParams" : {
           "metrics": "Disk_ServiceRate",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "DiskName",
           "sortBy": "Disk_ServiceRate"
         },
@@ -43,7 +43,7 @@
             "rowSpan": 3,
             "colSpan": 4
           },
-          "label": "Disk Service Rate",
+          "label": "Average Disk Service Rate",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -55,7 +55,7 @@
       {
         "queryParams" : {
           "metrics": "Heap_Used",
-          "aggregates": "sum",
+          "aggregates": "max",
           "dimensions": "MemType",
           "dimensionFilters": ["OldGen"],
           "sortBy": "Heap_Used"
@@ -67,7 +67,7 @@
             "rowSpan": 3,
             "colSpan": 4
           },
-          "label": "Heap usage of Old GC",
+          "label": "Maximum Heap usage of Old GC",
           "keys": false,
           "fg": "white",
           "selectedFg": "white",
@@ -79,7 +79,7 @@
       {
         "queryParams" : {
           "metrics": "Heap_Used",
-          "aggregates": "sum",
+          "aggregates": "max",
           "dimensions": "MemType",
           "dimensionFilters": ["Eden"],
           "sortBy": "Heap_Used"
@@ -91,7 +91,7 @@
             "rowSpan": 3,
             "colSpan": 4
           },
-          "label": "Heap usage of Young GC",
+          "label": "Maximum Heap usage of Young GC",
           "keys": false,
           "fg": "white",
           "selectedFg": "white",
@@ -103,7 +103,7 @@
       {
         "queryParams" : {
           "metrics": "Net_PacketDropRate4",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "Direction",
           "sortBy": "Net_PacketDropRate4"
         },
@@ -126,7 +126,7 @@
       {
         "queryParams" : {
           "metrics": "Net_PacketDropRate6",
-          "aggregates": "sum",
+          "aggregates": "avg",
           "dimensions": "Direction",
           "sortBy": "Net_PacketDropRate6"
         },
@@ -149,7 +149,7 @@
       {
         "queryParams" : {
           "metrics": "CB_EstimatedSize,CB_ConfiguredSize",
-          "aggregates": "sum,sum",
+          "aggregates": "max,max",
           "dimensions": "CBType",
           "sortBy": "CB_EstimatedSize"
         },
@@ -183,7 +183,7 @@
             "rowSpan": 3,
             "colSpan": 6
           },
-          "label": "Indexing Throttle Time",
+          "label": "Average Indexing Throttle Time",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -220,8 +220,8 @@
       {
         "queryParams" : {
           "metrics": "Master_PendingQueueSize",
-          "aggregates": "sum",
-          "dimensions": "n/a"
+          "aggregates": "max",
+          "dimensions": ""
         },
         "options": {
           "gridPosition": {

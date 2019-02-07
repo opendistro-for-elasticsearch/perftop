@@ -4,7 +4,7 @@
   "description": "PerfTop",
   "bin": "bin.js",
   "scripts": {
-    "build": "pkg . --out-path ./build",
+    "build": "pkg . --targets linux,macos --out-path ./build",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
     "lint": "eslint perf-top/",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,7 @@
     "blessed": "0.1.54",
     "blessed-contrib": "4.8.8",
     "console-stamp": "0.2.7",
-    "pkg": "4.3.6"
+    "pkg": "4.3.7"
   },
   "devDependencies": {
     "eslint": "^5.12.1",

@@ -10,22 +10,24 @@ Documentation: [LINK]
 
 Download the executables and preset JSON dashboard configs from s3: [LINK]
 
+Supported platforms: Linux, MacOS
+
 ## Demo Usage
-From Mac:
+### With Executables
+
 ```
-./perf-top-macos --json $JSON --endpoint $SEARCH_ENDPOINT
+./perf-top-${PLATFORM} --json $JSON --endpoint $ENDPOINT
 ```
 
-To run this on a cluster node where Performance Analyzer is running,
-scp `perf-top-linux` and `dashboard/*` and the JSON config file to the node.
-```
-./perf-top-linux --json $JSON --endpoint localhost:9600
-```
+From a cluster node with Performance Analyzer REST API on port 9600, set your `ENDPOINT` to `localhost:9600`.
 
 For stderr logging, add `--logfile $logfile`.
 
-For `dashboards/NodeAnalysisDashboard.json`, pass in `--nodename $nodename` to configure your dashboard
+For the preset `dashboards/NodeAnalysisDashboard.json`, pass in `--nodename $NODENAME` to configure your dashboard
 to fetch metrics for a single node.
+
+### Without the Executables
+Refer to [Development section](### Build/Usage).
 
 ## Development
 ### Requirements
@@ -34,13 +36,15 @@ to fetch metrics for a single node.
 
 ### Build/Usage
 1. Clone/download from Github
-1. `npm install` - locally installs dependencies
-2. `npm run build` - creates "perf-top-*" executables
-3. `npm run clean` - deletes locally installed dependencies and executables
+2. Run `./gradlew build`. This will run the following:
+   1. `npm install` - locally installs dependencies
+   2. `npm run build` - creates "perf-top-*" executables
+3. For cleaning, run `./gradlew clean` which will run:
+   1. `npm run clean` - deletes locally installed dependencies and executables
 
-To run PerfTop without (re)creating the executables every code change, run
+To run PerfTop without (re)creating the executables every code change:
 ```
-node ./bin.js --json $JSON --endpoint $SEARCH_ENDPOINT
+node ./bin.js --json $JSON --endpoint $ENDPOINT
 ```
 
 ## Configuration (JSON)

@@ -26,7 +26,7 @@ var parser = new argumentParser({
   description: 'For "Getting Started" guide and documentation, visit [LINK].' })
 
 parser.addArgument(
-  [ '--json' ],
+  [ '--config' ],
   { required: true,
     help: 'Relative path to the dashboard configuration JSON.' }
 )
@@ -45,7 +45,7 @@ parser.addArgument(
 var args = parser.parseArgs()
 
 // Load JSON data and set `endpoint` and `nodeName`
-var jsonData = require(path.resolve(process.cwd(), args.json))
+var jsonData = require(path.resolve(process.cwd(), args.config))
 if (!('endpoint' in jsonData)) {
   jsonData.endpoint = 'localhost'
 }

@@ -43,11 +43,13 @@ function metricTable (endpoint, gridOptions, queryParams, options, screen, metri
 
   options.columnWidth = this.labels.map(label => label.length + 10);
 
-  this.refreshInterval = options.refreshInterval;
+  this.refreshInterval = (options.refreshInterval > 5000) ? options.refreshInterval : 5000;
 
   var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen });
   this.table = grid.set(options.gridPosition.row, options.gridPosition.col, options.gridPosition.rowSpan, options.gridPosition.colSpan,
     contrib.table, options);
+
+  this.dataTimestamp = {};
 }
 
 /**
@@ -93,10 +95,14 @@ metricTable.prototype.generateGraph = function (table, screen) {
 function generateMetricTableData (metricTable, callback) {
   dataGenerator.getMetricData(metricTable.endpoint, metricTable.metrics, metricTable.aggregates, metricTable.dimensions,
     function (metricData) {
+      // If timestamp of the data is older 3 iterations, remove it.
+      dataGenerator.removeStaleData(metricData, metricTable.dataTimestamp);
+
+      // Get data for only one node
       if (metricTable.nodeName) {
         metricData = dataGenerator.getNodeData(metricData, metricTable.nodeName);
       }
-
+      // Get data for only the matching dimension
       if (metricTable.dimensionFilters) {
         metricData = dataGenerator.getDimensionData(metricData, metricTable.dimensionFilters);
       }

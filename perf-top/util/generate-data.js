@@ -156,8 +156,10 @@ function sortDataByDecreasingOrder (dimensions, data, sortBy) {
  * @param {object} metricData - hashmap object in the format of
  *                              { nodeName1: { fields: [dim1, dim2] ,
  *                                        data: [[data1], [data2]],
+ *                                        timestamp: timestamp },
  *                                nodeName2: { fields: [dim1, dim2] ,
- *                                        data: [[data3], ...] }
+ *                                        data: [[data3], ...],
+ *                                        timestamp: timestamp } }
  * @returns {object} - { dimensions: [dim1, dim2, node],
  *                       data: [[data1, nodeName1], [data2, nodeName1], [data3, nodeName2], ...]}
  */
@@ -192,8 +194,10 @@ function aggregateMetricData (metricData) {
  * @returns {object} - returns a hashmap in the format of
  *                     { nodeName1: { fields: [dim1, dim2, ...] ,
  *                                   data: [[data], [data], ...],
+ *                                        timestamp: timestamp },
  *                       nodeName2: { fields: [dim1, dim2, ...] ,
- *                                   data: [[data], [data], ...]}
+ *                                   data: [[data], [data], ...],
+ *                                        timestamp: timestamp } }
  */
 function getDataPerNode (rawData) {
   var jsonData = {};
@@ -234,7 +238,7 @@ function getDataPerNode (rawData) {
       nodeData.push(record.map(parseNumberData));
     });
 
-    allData[nodeName] = { fields: nodeDimensions, data: nodeData };
+    allData[nodeName] = { fields: nodeDimensions, data: nodeData, timestamp: jsonData[nodeName].timestamp };
   }
   return allData;
 }
@@ -245,11 +249,15 @@ function getDataPerNode (rawData) {
  * @param {object} metricData - hashmap object in the format of
  *                              { nodeName1: { fields: [dim1, dim2] ,
  *                                        data: [[data1], [data2]],
+ *                                        timestamp: timestamp },
  *                                nodeName2: { fields: [dim1, dim2] ,
- *                                        data: [[data3], ...] }
+ *                                        data: [[data3], ...],
+ *                                        timestamp: timestamp } }
  * @param {object} nodeName - name or prefix of the node to return the data for.
  * @returns {object} - { nodeName: { fields: [dim1, dim2] ,
- *                                   data: [[data1], [data2]]}
+ *                                   data: [[data1], [data2]],
+ *                                   timestamp: timestamp } }
+
  */
 function getNodeData (metricData, nodeName) {
   var node = Object.keys(metricData).filter(lineName => lineName.startsWith(nodeName));
@@ -265,17 +273,20 @@ function getNodeData (metricData, nodeName) {
 }
 
 /**
- * Given a dimension value and hashmap of dimensions and data per node,
+ * Given a hashmap of dimensions and data per node and a dimension value,
  * return the hashmap of data for the interested dimension(s).
  *
  * @param {object} metricData - hashmap object in the format of
  *                              { nodeName1: { fields: [dim1, dim2, dim3] ,
  *                                        data: [[data1], [data2]],
+ *                                        timestamp: timestamp },
  *                                nodeName2: { fields: [dim1, dim2, dim3] ,
- *                                        data: [[data3], ...] }
+ *                                        data: [[data3], ...]
+ *                                        timestamp: timestamp } }
  * @param {Array} dimensionFilters - Values of dimensions to return metrics for
  * @returns {object} - { nodeName: { fields: [dim1, dim2] ,
- *                                   data: [[data1], [data2]]}
+ *                                   data: [[data1], [data2]],
+ *                                   timestamp: timestamp } }
  */
 function getDimensionData (metricData, dimensionFilters) {
   for (var nodeName in metricData) {
@@ -290,10 +301,52 @@ function getDimensionData (metricData, dimensionFilters) {
   return metricData;
 }
 
+/**
+ * Given a hashmap of dimensions and data per node
+ * and a hashmap of a counter and a timestamp of the latest data per node,
+ * remove in-place the any data that has not been updated for 3 iterations.
+ *
+ * @param {object} metricData - hashmap object in the format of
+ *                              { nodeName1: { fields: [dim1, dim2, dim3] ,
+ *                                        data: [[data1], [data2]],
+ *                                        timestamp: timestamp }
+ *                                nodeName2: { fields: [dim1, dim2, dim3] ,
+ *                                        data: [[data3], ...]
+ *                                        timestamp: timestamp } }
+ * @param {Array} dataTimestamp - hashmap object in the format of
+ *                              { nodeName1: { counter: 0,
+ *                                        timestamp: timestamp }
+ *                                nodeName2: { counter: 1,
+ *                                        timestamp: timestamp } }
+ */
+function removeStaleData(metricData, dataTimestamp) {
+  for (var nodeName in metricData) {
+    // Initialize or update `dataTimestamp`
+    if (nodeName in dataTimestamp) {
+      if (metricData[nodeName].timestamp > dataTimestamp[nodeName].timestamp) {
+        dataTimestamp[nodeName] = { counter: 0, timestamp: metricData[nodeName].timestamp};
+      } else {
+        dataTimestamp[nodeName].counter++;
+      }
+    } else {
+      dataTimestamp[nodeName] = { counter: 0, timestamp: metricData[nodeName].timestamp};
+    }
+    // Remove data that has not been updated for 3 iterations
+    if (dataTimestamp[nodeName].counter >= 3) {
+      console.error(`Data for node '${nodeName}' has not been updated for ` +
+        `${dataTimestamp[nodeName].counter} iterations.` +
+        ` Last updated timestamp was ${dataTimestamp[nodeName].timestamp}.` +
+        ` Removing the data from the dashboard.`);
+      delete metricData[nodeName];
+    }
+  }
+}
+
 module.exports.getMetricData = getMetricData;
 module.exports.getMetricUnits = getMetricUnits;
 module.exports.getNodeData = getNodeData;
 module.exports.getDimensionData = getDimensionData;
 module.exports.aggregateMetricData = aggregateMetricData;
 module.exports.parseNumberData = parseNumberData;
+module.exports.removeStaleData = removeStaleData;
 module.exports.sortDataByDecreasingOrder = sortDataByDecreasingOrder;

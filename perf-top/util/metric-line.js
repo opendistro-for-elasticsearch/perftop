@@ -38,7 +38,7 @@ function metricLine (endpoint, gridOptions, queryParams, options, screen) {
 
   this.lines = {};
 
-  this.refreshInterval = options.refreshInterval;
+  this.refreshInterval = (options.refreshInterval > 5000) ? options.refreshInterval : 5000;
 
   var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen });
   this.line = grid.set(options.gridPosition.row, options.gridPosition.col, options.gridPosition.rowSpan,
@@ -48,6 +48,8 @@ function metricLine (endpoint, gridOptions, queryParams, options, screen) {
   // Initialize the data with '0's
   this.yAxis = Array.apply(null, new Array(this.xAxis.length)).map(Number.prototype.valueOf, 0);
   this.colors = options.colors || [];
+
+  this.dataTimestamp = {};
 }
 
 /**
@@ -101,10 +103,14 @@ function updateLineData (lineData, newData) {
 function generateAndUpdateLineData (metricLine) {
   dataGenerator.getMetricData(metricLine.endpoint, metricLine.metrics, metricLine.aggregates, metricLine.dimensions,
     function (metricData) {
+      // If timestamp of the data is older 3 iterations, remove it.
+      dataGenerator.removeStaleData(metricData, metricLine.dataTimestamp);
+
+      // Get data for only one node
       if (metricLine.nodeName) {
         metricData = dataGenerator.getNodeData(metricData, metricLine.nodeName);
       }
-
+      // Get data for only the matching dimension
       if (metricLine.dimensionFilters) {
         metricData = dataGenerator.getDimensionData(metricData, metricLine.dimensionFilters);
       }
@@ -141,9 +147,17 @@ function generateAndUpdateLineData (metricLine) {
             y: metricLine.yAxis.slice(0, metricLine.yAxis.length)
           };
         }
-
+        // Update line
         updateLineData(metricLine.lines[lineName], aggData);
       }
+
+      // Remove line with no data
+      for (lineName in metricLine.lines) {
+        if (!(lineName in metricData)) {
+          delete metricLine.lines[lineName];
+        }
+      }
+
       var allLines = Object.keys(metricLine.lines).map(function (line) {
         return metricLine.lines[line];
       });

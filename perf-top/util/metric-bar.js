@@ -36,11 +36,13 @@ function metricBar (endpoint, gridOptions, queryParams, options, screen) {
   this.nodeName = queryParams.nodeName;
   this.dimensionFilters = queryParams.dimensionFilters;
 
-  this.refreshInterval = options.refreshInterval;
+  this.refreshInterval = (options.refreshInterval > 5000) ? options.refreshInterval : 5000;
 
   var grid = new contrib.grid({ rows: gridOptions.rows, cols: gridOptions.cols, screen: screen });
   this.bar = grid.set(options.gridPosition.row, options.gridPosition.col, options.gridPosition.rowSpan,
     options.gridPosition.colSpan, contrib.bar, options);
+
+  this.dataTimestamp = {};
 }
 
 /**
@@ -81,10 +83,14 @@ metricBar.prototype.generateGraph = function (bar, screen) {
  */
 function generateMetricBarData (metricBar, callback) {
   dataGenerator.getMetricData(metricBar.endpoint, metricBar.metrics, metricBar.aggregates, metricBar.dimensions, function (metricData) {
+    // If timestamp of the data is older 3 iterations, remove it.
+    dataGenerator.removeStaleData(metricData, metricBar.dataTimestamp);
+
+    // Get data for only one node
     if (metricBar.nodeName) {
       metricData = dataGenerator.getNodeData(metricData, metricBar.nodeName);
     }
-
+    // Get data for only the matching dimension
     if (metricBar.dimensionFilters) {
       metricData = dataGenerator.getDimensionData(metricData, metricBar.dimensionFilters);
     }
@@ -98,6 +104,7 @@ function generateMetricBarData (metricBar, callback) {
     var dimensionIndex = aggregatedData.dimensions.findIndex(dimensionName => dimensionName === metricBar.dimensions);
     var metricIndex = aggregatedData.dimensions.findIndex(metricName => metricName === metricBar.metrics);
 
+    // Aggregate (sum) the data value by dimension
     var aggData = {};
     aggregatedData.data.forEach(function (data) {
       var dataDimension = data[dimensionIndex];

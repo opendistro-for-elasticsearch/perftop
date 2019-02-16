@@ -31,9 +31,10 @@
       },
       {
         "queryParams" : {
-          "metrics": "Latency,HTTP_RequestDocs",
+          "metrics": "Latency,HTTP_RequestDocs,HTTP_TotalRequests",
           "aggregates": "avg,sum",
           "dimensions": "Operation,HTTPRespCode,Indices",
+          "dimensionFilters": ["bulk", "search"],
           "sortBy": "HTTP_RequestDocs"
         },
         "options": {
@@ -58,14 +59,15 @@
         "queryParams" : {
           "metrics": "IO_WriteThroughput",
           "aggregates": "sum",
-          "dimensions": "Operation"
+          "dimensions": "Operation",
+          "dimensionFilters": ["other", "shardbulk", "refresh", "merge"]
         },
         "options": {
           "gridPosition": {
             "row": 8,
             "col": 0,
             "rowSpan": 4,
-            "colSpan": 6
+            "colSpan": 3
           },
           "label": "Write Throughput (Bps) per Operation",
           "labelColor": "red",
@@ -84,13 +86,13 @@
         "options": {
           "gridPosition": {
             "row": 8,
-            "col": 6,
+            "col": 3,
             "rowSpan": 4,
-            "colSpan": 6
+            "colSpan": 9
           },
           "label": "CPU (cores) per Operation",
           "labelColor": "blue",
-          "barWidth": 12,
+          "barWidth": 16,
           "xOffset": 2,
           "maxHeight": 6,
           "refreshInterval": 5000

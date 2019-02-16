@@ -13,52 +13,73 @@
  * permissions and limitations under the License.
  */
 
-var argumentParser = require('argparse').ArgumentParser
-var fs = require('fs')
-var path = require('path')
-var process = require('process')
-var util = require('util')
+var argumentParser = require('argparse').ArgumentParser;
+var fs = require('fs');
+var path = require('path');
+var process = require('process');
+var util = require('util');
 
-var graphGenerator = require('./perf-top/generate-graphs.js')
+var clusterOverviewJSON = require('./dashboards/ClusterOverview.json');
+var clusterPerformanceDiagnosticJSON = require('./dashboards/ClusterPerformanceDiagnostic.json');
+var clusterPerformanceInformationalJSON = require('./dashboards/ClusterPerformanceInformational.json');
+var nodeAnalysisJSON = require('./dashboards/NodeAnalysis.json');
+
+var graphGenerator = require('./perf-top/generate-graphs.js');
 
 // Parse command line arguments
 var parser = new argumentParser({
-  description: 'For "Getting Started" guide and documentation, visit [LINK].' })
+  description: 'For "Getting Started" guide and documentation, visit [LINK].' });
 
 parser.addArgument(
-  [ '--config' ],
+  [ '--dashboard' ],
   { required: true,
-    help: 'Relative path to the dashboard configuration JSON.' }
-)
+    help: 'Relative path to the dashboard configuration JSON. ' +
+    'To load preset dashboard, this may also be: ' +
+    '(1) ClusterOverview, (2) ClusterPerformanceDiagnostic, ' +
+    '(3) ClusterPerformanceInformational, or (4) NodeAnalysis. (e.g. "--dashboard ClusterOverview")'}
+);
 parser.addArgument(
   [ '--endpoint' ],
-  { help: 'Endpoint for the Performance Analyzer queries. This can also be defined in the JSON.' }
-)
+  { help: 'Endpoint for the Performance Analyzer queries. ' +
+  'This can also be defined in the JSON.' }
+);
 parser.addArgument(
   [ '--nodename' ],
   { help: 'Value to replace "#nodeName" in the JSON.' }
-)
+);
 parser.addArgument(
   [ '--logfile' ],
   { help: 'File to redirect STDERR to. If undefined, redirect to "/dev/null".' }
-)
-var args = parser.parseArgs()
+);
+var args = parser.parseArgs();
 
 // Load JSON data and set `endpoint` and `nodeName`
-var jsonData = require(path.resolve(process.cwd(), args.config))
-if (!('endpoint' in jsonData)) {
-  jsonData.endpoint = 'localhost'
+var jsonData;
+if (args.dashboard === 'ClusterOverview') {
+  jsonData = clusterOverviewJSON;
+} else if (args.dashboard === 'ClusterPerformanceDiagnostic') {
+  jsonData = clusterPerformanceDiagnosticJSON;
+} else if (args.dashboard === 'ClusterPerformanceInformational') {
+  jsonData = clusterPerformanceInformationalJSON;
+} else if (args.dashboard === 'NodeAnalysis') {
+  jsonData = nodeAnalysisJSON;
+} else {
+  jsonData = require(path.resolve(process.cwd(), args.dashboard));
 }
-jsonData.endpoint = args.endpoint ? args.endpoint : jsonData.endpoint
-jsonData = JSON.stringify(jsonData)
-jsonData = jsonData.replace(/#nodeName/g, args.nodename ? args.nodename : '')
-jsonData = JSON.parse(jsonData)
+
+if (!('endpoint' in jsonData)) {
+  jsonData.endpoint = 'localhost';
+}
+jsonData.endpoint = args.endpoint ? args.endpoint : jsonData.endpoint;
+jsonData = JSON.stringify(jsonData);
+jsonData = jsonData.replace(/#nodeName/g, args.nodename ? args.nodename : '');
+jsonData = JSON.parse(jsonData);
 
 // Configure stderr to a logfile
-var logPath = args.logfile ? path.resolve(process.cwd(), args.logfile) : '/dev/null'
-var logFile = fs.createWriteStream(logPath)
+var logPath = args.logfile ? path.resolve(process.cwd(), args.logfile) : '/dev/null';
+var logFile = fs.createWriteStream(logPath);
 console.error = function (msg) {
-  logFile.write(util.format(msg) + '\n')
-}
+  logFile.write(util.format(msg) + '\n');
+};
 
-graphGenerator.initAndStart(jsonData)
+graphGenerator.initAndStart(jsonData);

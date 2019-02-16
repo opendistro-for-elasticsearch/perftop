@@ -112,7 +112,8 @@ function generateMetricTableData (metricTable, callback) {
         callback({});
       } else {
         dataGenerator.sortDataByDecreasingOrder(aggregatedData.dimensions, aggregatedData.data, metricTable.sortBy);
-        callback({ 'headers': metricTable.labels, 'data': aggregatedData.data });
+        dataGenerator.addCommaDelimiter(aggregatedData.data);
+        callback({ 'headers': metricTable.labels, 'data': aggregatedData.data , 'align': metricTable.align});
       }
     });
 }

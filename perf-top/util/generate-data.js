@@ -151,6 +151,26 @@ function sortDataByDecreasingOrder (dimensions, data, sortBy) {
 }
 
 /**
+ * Given a 2D array of data, modify all columns with only numbers by adding a comma delimiter to the elements.
+ *
+ * @param {Array} data - 2D array to modify.
+ */
+function addCommaDelimiter (data) {
+  if (data.length == 0) {
+    return;
+  }
+  var numColumn = data[0].length;
+  for (var column = 0; column < numColumn; column++) {
+    var dataColumn = data.map( function(row, y) { return row[column] } );
+    if (dataColumn.every( function(dataValue) { return typeof dataValue === 'number' } )) {
+      for (var row = 0; row < data.length; row++) {
+        data[row][column] = data[row][column].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    }
+  }
+}
+
+/**
  * Given a hashmap of dimensions and data per node, flatten it to a hashmap of 1 dimensions array and 1 data 2D array.
  *
  * @param {object} metricData - hashmap object in the format of
@@ -350,3 +370,4 @@ module.exports.aggregateMetricData = aggregateMetricData;
 module.exports.parseNumberData = parseNumberData;
 module.exports.removeStaleData = removeStaleData;
 module.exports.sortDataByDecreasingOrder = sortDataByDecreasingOrder;
+module.exports.addCommaDelimiter = addCommaDelimiter;

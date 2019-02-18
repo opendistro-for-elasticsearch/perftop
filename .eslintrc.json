@@ -15,6 +15,7 @@
     "no-octal-escape": "error",
     "no-undef":"error",
     "no-use-before-define": "off",
+    "semi": ["error", "always"],
     "semi-style": ["error", "last"]
   }
 }

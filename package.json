@@ -6,7 +6,7 @@
   "scripts": {
     "build": "pkg . --targets linux,macos --out-path ./build",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
-    "lint": "eslint perf-top/",
+    "lint": "eslint perf-top/ bin.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

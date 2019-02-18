@@ -113,7 +113,7 @@ function generateMetricTableData (metricTable, callback) {
       } else {
         dataGenerator.sortDataByDecreasingOrder(aggregatedData.dimensions, aggregatedData.data, metricTable.sortBy);
         dataGenerator.addCommaDelimiter(aggregatedData.data);
-        callback({ 'headers': metricTable.labels, 'data': aggregatedData.data , 'align': metricTable.align});
+        callback({ 'headers': metricTable.labels, 'data': aggregatedData.data });
       }
     });
 }

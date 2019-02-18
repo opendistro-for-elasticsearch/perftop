@@ -32,7 +32,7 @@
       {
         "queryParams" : {
           "metrics": "Latency,HTTP_RequestDocs,HTTP_TotalRequests",
-          "aggregates": "avg,sum",
+          "aggregates": "avg,sum,sum",
           "dimensions": "Operation,HTTPRespCode,Indices",
           "dimensionFilters": ["bulk", "search"],
           "sortBy": "HTTP_RequestDocs"

@@ -68,8 +68,8 @@
           },
           "label": "Page Faults",
           "keys": false,
-          "fg": "white",
-          "selectedFg": "white",
+          "fg": "green",
+          "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
           "refreshInterval": 5000

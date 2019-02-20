@@ -15,10 +15,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 6,
-            "col": 0,
-            "rowSpan": 3,
-            "colSpan": 3
+            "row": 4,
+            "col": 6,
+            "rowSpan": 4,
+            "colSpan": 2
           },
           "label": "Average Disk Utilization Rate",
           "keys": false,
@@ -38,10 +38,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 6,
-            "col": 3,
-            "rowSpan": 3,
-            "colSpan": 3
+            "row": 4,
+            "col": 8,
+            "rowSpan": 4,
+            "colSpan": 2
           },
           "label": "Average Disk Wait Time",
           "keys": false,
@@ -61,86 +61,15 @@
         },
         "options": {
           "gridPosition": {
-            "row": 6,
-            "col": 6,
-            "rowSpan": 3,
-            "colSpan": 3
+            "row": 4,
+            "col": 10,
+            "rowSpan": 4,
+            "colSpan": 2
           },
           "label": "Average Disk Service Rate",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
-          "selectedBg": " ",
-          "columnSpacing": 1,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Heap_Used",
-          "aggregates": "max",
-          "dimensions": "MemType",
-          "dimensionFilters": ["OldGen"],
-          "sortBy": "Heap_Used"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 9,
-            "col": 0,
-            "rowSpan": 3,
-            "colSpan": 3
-          },
-          "label": "Maximum Heap Usage of Old GC",
-          "keys": false,
-          "fg": "white",
-          "selectedFg": "white",
-          "selectedBg": " ",
-          "columnSpacing": 1,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Heap_Used",
-          "aggregates": "max",
-          "dimensions": "MemType",
-          "dimensionFilters": ["Eden"],
-          "sortBy": "Heap_Used"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 9,
-            "col": 3,
-            "rowSpan": 3,
-            "colSpan": 3
-          },
-          "label": "Maximum Heap Usage of Young GC",
-          "keys": false,
-          "fg": "white",
-          "selectedFg": "white",
-          "selectedBg": " ",
-          "columnSpacing": 1,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Indexing_ThrottleTime",
-          "aggregates": "avg",
-          "dimensions": "IndexName,ShardID",
-          "sortBy": "Indexing_ThrottleTime"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 3,
-            "col": 8,
-            "rowSpan": 3,
-            "colSpan": 4
-          },
-          "label": "Average Indexing Throttle Time",
-          "keys": false,
-          "fg": "cyan",
-          "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
           "refreshInterval": 5000
@@ -157,7 +86,7 @@
           "gridPosition": {
             "row": 0,
             "col": 0,
-            "rowSpan": 3,
+            "rowSpan": 4,
             "colSpan": 6
           },
           "label": "Shard Operation Metrics",
@@ -178,9 +107,9 @@
         },
         "options": {
           "gridPosition": {
-            "row": 9,
+            "row": 8,
             "col": 6,
-            "rowSpan": 3,
+            "rowSpan": 4,
             "colSpan": 6
           },
           "label": "Circuit Breaker - Tripped Events / Estimated and Configured Limits",
@@ -191,50 +120,28 @@
           "columnSpacing": 1,
           "refreshInterval": 5000
         }
-      },
+      }
+    ],
+    "bars": [
       {
-        "queryParams" : {
-          "metrics": "Merge_Event,Merge_Time",
-          "aggregates": "sum,avg",
-          "dimensions": "IndexName",
-          "sortBy": "Merge_Event"
+        "queryParams": {
+          "metrics": "ShardEvents",
+          "aggregates": "sum",
+          "dimensions": "Operation",
+          "nodeName": "#nodeName"
         },
         "options": {
           "gridPosition": {
-            "row": 3,
-            "col": 4,
-            "rowSpan": 3,
-            "colSpan": 4
+            "row": 0,
+            "col": 6,
+            "rowSpan": 4,
+            "colSpan": 6
           },
-          "label": "Index Merge",
-          "keys": false,
-          "fg": "cyan",
-          "selectedFg": "cyan",
-          "selectedBg": " ",
-          "columnSpacing": 1,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Flush_Event,Flush_Time",
-          "aggregates": "sum,avg",
-          "dimensions": "IndexName",
-          "sortBy": "Flush_Event"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 3,
-            "col": 0,
-            "rowSpan": 3,
-            "colSpan": 4
-          },
-          "label": "Index Flush",
-          "keys": false,
-          "fg": "cyan",
-          "selectedFg": "cyan",
-          "selectedBg": " ",
-          "columnSpacing": 1,
+          "label": "Shard Operation - Sum by Operation (count)",
+          "labelColor": "blue",
+          "barWidth": 20,
+          "xOffset": 2,
+          "maxHeight": 6,
           "refreshInterval": 5000
         }
       }
@@ -242,18 +149,19 @@
     "lines": [
       {
         "queryParams" : {
-          "metrics": "Master_PendingQueueSize",
-          "aggregates": "max",
-          "dimensions": ""
+          "metrics": "Net_Throughput",
+          "aggregates": "sum",
+          "dimensions": "Direction",
+          "dimensionFilters": ["in"]
         },
         "options": {
           "gridPosition": {
-            "row": 6,
-            "col": 9,
-            "rowSpan": 3,
-            "colSpan": 4
+            "row": 4,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 6
           },
-          "label": "Master Pending Tasks (count)",
+          "label": "Network Throughput In (count)",
           "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },
@@ -263,39 +171,19 @@
       },
       {
         "queryParams" : {
-          "metrics": "Net_PacketRate4",
+          "metrics": "Net_Throughput",
           "aggregates": "sum",
-          "dimensions": "Direction"
+          "dimensions": "Direction",
+          "dimensionFilters": ["out"]
         },
         "options": {
           "gridPosition": {
-            "row": 0,
-            "col": 6,
-            "rowSpan": 3,
-            "colSpan": 3
+            "row": 8,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 6
           },
-          "label": "Net_PacketRate4 (count)",
-          "showNthLabel": 3,
-          "showLegend": true,
-          "legend": { "width": 10 },
-          "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Net_PacketRate6",
-          "aggregates": "sum",
-          "dimensions": "Direction"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 0,
-            "col": 9,
-            "rowSpan": 3,
-            "colSpan": 3
-          },
-          "label": "Net_PacketRate6",
+          "label": "Network Throughput Out (count)",
           "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },

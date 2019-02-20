@@ -43,7 +43,7 @@
             "rowSpan": 4,
             "colSpan": 5
           },
-          "label": "Shard Workload",
+          "label": "Shard Operation Metrics",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -94,7 +94,7 @@
           },
           "label": "Write Throughput (Bps) per Operation",
           "labelColor": "red",
-          "barWidth": 12,
+          "barWidth": 15,
           "xOffset": 2,
           "maxHeight": 6,
           "refreshInterval": 5000

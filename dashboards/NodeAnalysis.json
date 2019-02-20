@@ -21,7 +21,7 @@
             "rowSpan": 4,
             "colSpan": 5
           },
-          "label": "Shard Workload",
+          "label": "Shard Operation Metrics",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -70,7 +70,7 @@
             "rowSpan": 4,
             "colSpan": 3
           },
-          "label": "Maximum Heap Usage",
+          "label": "Heap Usage",
           "keys": false,
           "fg": "yellow",
           "selectedFg": "yellow",
@@ -96,8 +96,8 @@
           },
           "label": "Thread Pool - Queue Size and Rejected Requests",
           "keys": false,
-          "fg": "green",
-          "selectedFg": "green",
+          "fg": "cyan",
+          "selectedFg": "cyan",
           "selectedBg": " ",
           "columnSpacing": 1,
           "refreshInterval": 5000
@@ -166,7 +166,7 @@
             "colSpan": 4
           },
           "label": "Circuit Breaker - Tripped Events (count)",
-          "labelColor": "blue",
+          "labelColor": "red",
           "barWidth": 20,
           "xOffset": 2,
           "maxHeight": 6,
@@ -187,7 +187,7 @@
             "rowSpan": 2,
             "colSpan": 3
           },
-          "label": "Shard Operation (count)",
+          "label": "Shard Operation - Sum by Operation (count)",
           "labelColor": "blue",
           "barWidth": 15,
           "xOffset": 2,

@@ -10,7 +10,7 @@
         "queryParams" : {
           "metrics": "ShardBulkDocs,ShardEvents",
           "aggregates": "sum,sum",
-          "dimensions": "IndexName,Operation",
+          "dimensions": "Operation,IndexName,ShardID",
           "nodeName": "#nodeName",
           "sortBy": "ShardEvents"
         },
@@ -18,10 +18,10 @@
           "gridPosition": {
             "row": 0,
             "col": 0,
-            "rowSpan": 3,
+            "rowSpan": 4,
             "colSpan": 5
           },
-          "label": "Shard Operation Metrics",
+          "label": "Shard Workload",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -32,20 +32,20 @@
       },
       {
         "queryParams" : {
-          "metrics": "Cache_Request_Hit,Cache_Request_Miss",
-          "aggregates": "sum,sum",
+          "metrics": "Cache_Request_Miss",
+          "aggregates": "sum",
           "dimensions": "IndexName,ShardID",
           "nodeName": "#nodeName",
           "sortBy": "Cache_Request_Miss"
         },
         "options": {
           "gridPosition": {
-            "row": 3,
-            "col": 0,
-            "rowSpan": 3,
-            "colSpan": 5
+            "row": 0,
+            "col": 8,
+            "rowSpan": 4,
+            "colSpan": 4
           },
-          "label": "Shard Request Cache Hit and Miss",
+          "label": "Shard Request Cache Miss",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -65,9 +65,9 @@
         },
         "options": {
           "gridPosition": {
-            "row": 6,
+            "row": 8,
             "col": 0,
-            "rowSpan": 3,
+            "rowSpan": 4,
             "colSpan": 3
           },
           "label": "Maximum Heap Usage",
@@ -81,47 +81,23 @@
       },
       {
         "queryParams" : {
-          "metrics": "ThreadPool_QueueSize,ThreadPool_RejectedReqs,Thread_Blocked_Time",
-          "aggregates": "max",
+          "metrics": "ThreadPool_QueueSize,ThreadPool_RejectedReqs",
+          "aggregates": "max,sum",
           "dimensions": "ThreadPoolType",
           "nodeName": "#nodeName",
           "sortBy": "ThreadPool_RejectedReqs"
         },
         "options": {
           "gridPosition": {
-            "row": 3,
-            "col": 5,
-            "rowSpan": 3,
-            "colSpan": 7
+            "row": 4,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 5
           },
-          "label": "ThreadPool Metrics",
+          "label": "Thread Pool - Queue Size and Rejected Requests",
           "keys": false,
-          "fg": "yellow",
-          "selectedFg": "yellow",
-          "selectedBg": " ",
-          "columnSpacing": 1,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Disk_Utilization",
-          "aggregates": "avg",
-          "dimensions": "DiskName",
-          "nodeName": "#nodeName",
-          "sortBy": "Disk_Utilization"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 0,
-            "col": 9,
-            "rowSpan": 3,
-            "colSpan": 3
-          },
-          "label": "Disk Utilization",
-          "keys": false,
-          "fg": "yellow",
-          "selectedFg": "yellow",
+          "fg": "green",
+          "selectedFg": "green",
           "selectedBg": " ",
           "columnSpacing": 1,
           "refreshInterval": 5000
@@ -129,50 +105,6 @@
       }
     ],
     "bars": [
-      {
-        "queryParams" : {
-          "metrics": "Net_PacketDropRate4",
-          "aggregates": "avg",
-          "dimensions": "Direction",
-          "nodeName": "#nodeName"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 6,
-            "col": 8,
-            "rowSpan": 3,
-            "colSpan": 2
-          },
-          "label": "IPv4 Packet Drop Rate (packets/s)",
-          "labelColor": "red",
-          "barWidth": 12,
-          "xOffset": 2,
-          "maxHeight": 6,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
-          "metrics": "Net_PacketDropRate6",
-          "aggregates": "avg",
-          "dimensions": "Direction",
-          "nodeName": "#nodeName"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 6,
-            "col": 10,
-            "rowSpan": 3,
-            "colSpan": 2
-          },
-          "label": "IPv6 Packet Drop Rate (packets/s)",
-          "labelColor": "yellow",
-          "barWidth": 12,
-          "xOffset": 2,
-          "maxHeight": 6,
-          "refreshInterval": 5000
-        }
-      },
       {
         "queryParams" : {
           "metrics": "GC_Collection_Event",
@@ -183,10 +115,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 9,
-            "col": 0,
-            "rowSpan": 3,
-            "colSpan": 3
+            "row": 8,
+            "col": 3,
+            "rowSpan": 4,
+            "colSpan": 2
           },
           "label": "Total GC Collection Events (count)",
           "labelColor": "white",
@@ -206,10 +138,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 9,
-            "col": 3,
-            "rowSpan": 3,
-            "colSpan": 3
+            "row": 8,
+            "col": 5,
+            "rowSpan": 4,
+            "colSpan": 2
           },
           "label": "Total GC Collection Time (ms)",
           "labelColor": "white",
@@ -228,10 +160,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 6,
-            "col": 3,
-            "rowSpan": 3,
-            "colSpan": 5
+            "row": 4,
+            "col": 8,
+            "rowSpan": 4,
+            "colSpan": 4
           },
           "label": "Circuit Breaker - Tripped Events (count)",
           "labelColor": "blue",
@@ -252,12 +184,12 @@
           "gridPosition": {
             "row": 0,
             "col": 5,
-            "rowSpan": 3,
-            "colSpan": 4
+            "rowSpan": 2,
+            "colSpan": 3
           },
           "label": "Shard Operation (count)",
           "labelColor": "blue",
-          "barWidth": 12,
+          "barWidth": 15,
           "xOffset": 2,
           "maxHeight": 6,
           "refreshInterval": 5000
@@ -275,12 +207,56 @@
         },
         "options": {
           "gridPosition": {
-            "row": 9,
-            "col": 6,
-            "rowSpan": 3,
-            "colSpan": 6
+            "row": 8,
+            "col": 7,
+            "rowSpan": 4,
+            "colSpan": 5
           },
           "label": "Garbage Collection CPU (cores)",
+          "showNthLabel": 3,
+          "showLegend": true,
+          "legend": { "width": 10 },
+          "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Net_PacketDropRate4",
+          "aggregates": "sum",
+          "dimensions": "Direction",
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 2,
+            "col": 5,
+            "rowSpan": 3,
+            "colSpan": 3
+          },
+          "label": "Packet Drop Rate (IPv4)",
+          "showNthLabel": 3,
+          "showLegend": true,
+          "legend": { "width": 10 },
+          "xAxis": ["0:00", "0:05", "0:10", "0:15", "0:20", "0:25", "0:30", "0:35", "0:40", "0:45", "0:50", "0:55"],
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Net_PacketDropRate6",
+          "aggregates": "sum",
+          "dimensions": "Direction",
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 5,
+            "col": 5,
+            "rowSpan": 3,
+            "colSpan": 3
+          },
+          "label": "Packet Drop Rate (IPv6)",
           "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },

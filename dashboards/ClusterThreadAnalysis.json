@@ -1,0 +1,149 @@
+{
+  "endpoint": "localhost:9600",
+  "gridOptions": {
+    "rows": 12,
+    "cols": 12
+  },
+  "graphs": {
+    "tables": [
+      {
+        "queryParams" : {
+          "metrics": "ThreadPool_QueueSize,ThreadPool_RejectedReqs",
+          "aggregates": "max,sum",
+          "dimensions": "ThreadPoolType",
+          "sortBy": "ThreadPool_RejectedReqs"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Thread Pool - Queue Size and Rejected Requests",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Thread_Blocked_Time",
+          "aggregates": "avg",
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "Thread_Blocked_Time"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 4,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Thread - Blocked Time",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Paging_MajfltRate,Paging_MinfltRate",
+          "aggregates": "sum,sum",
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "Paging_MajfltRate"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 8,
+            "col": 0,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Page Faults",
+          "keys": false,
+          "fg": "white",
+          "selectedFg": "white",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Sched_Runtime",
+          "aggregates": "max",
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "Sched_Runtime"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 6,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Context Switch - Run Time",
+          "keys": false,
+          "fg": "cyan",
+          "selectedFg": "cyan",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Sched_Waittime",
+          "aggregates": "max",
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "Sched_Waittime"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 4,
+            "col": 6,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Context Switch - Wait Time",
+          "keys": false,
+          "fg": "cyan",
+          "selectedFg": "cyan",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "Sched_CtxRate",
+          "aggregates": "sum",
+          "dimensions": "Operation,IndexName,ShardID",
+          "sortBy": "Sched_CtxRate"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 8,
+            "col": 6,
+            "rowSpan": 4,
+            "colSpan": 6
+          },
+          "label": "Context Switch - Count",
+          "keys": false,
+          "fg": "cyan",
+          "selectedFg": "cyan",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      }
+    ]
+  }
+}

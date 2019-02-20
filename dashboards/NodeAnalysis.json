@@ -8,6 +8,30 @@
     "tables": [
       {
         "queryParams" : {
+          "metrics": "ShardBulkDocs,ShardEvents",
+          "aggregates": "sum,sum",
+          "dimensions": "IndexName,Operation",
+          "nodeName": "#nodeName",
+          "sortBy": "ShardEvents"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 0,
+            "rowSpan": 3,
+            "colSpan": 5
+          },
+          "label": "Shard Operation Metrics",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
           "metrics": "Cache_Request_Hit,Cache_Request_Miss",
           "aggregates": "sum,sum",
           "dimensions": "IndexName,ShardID",
@@ -16,10 +40,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 0,
+            "row": 3,
             "col": 0,
             "rowSpan": 3,
-            "colSpan": 8
+            "colSpan": 5
           },
           "label": "Shard Request Cache Hit and Miss",
           "keys": false,
@@ -32,45 +56,21 @@
       },
       {
         "queryParams" : {
-          "metrics": "Indexing_ThrottleTime",
-          "aggregates": "avg",
-          "dimensions": "IndexName",
-          "nodeName": "#nodeName",
-          "sortBy": "Indexing_ThrottleTime"
-        },
-        "options": {
-          "gridPosition": {
-            "row": 3,
-            "col": 0,
-            "rowSpan": 3,
-            "colSpan": 6
-          },
-          "label": "Average Indexing Throttle Time",
-          "keys": false,
-          "fg": "cyan",
-          "selectedFg": "cyan",
-          "selectedBg": " ",
-          "columnSpacing": 1,
-          "refreshInterval": 5000
-        }
-      },
-      {
-        "queryParams" : {
           "metrics": "Heap_Used",
           "aggregates": "max",
           "dimensions": "MemType",
-          "dimensionFilters": ["OldGen", "Eden"],
+          "dimensionFilters": ["Heap","OldGen","Eden","NonHeap","PermGen","Survivor"],
           "nodeName": "#nodeName",
           "sortBy": "Heap_Used"
         },
         "options": {
           "gridPosition": {
             "row": 6,
-            "col": 6,
+            "col": 0,
             "rowSpan": 3,
-            "colSpan": 6
+            "colSpan": 3
           },
-          "label": "Maxiumum Heap Usage of Old and Young GC",
+          "label": "Maximum Heap Usage",
           "keys": false,
           "fg": "yellow",
           "selectedFg": "yellow",
@@ -81,23 +81,23 @@
       },
       {
         "queryParams" : {
-          "metrics": "Disk_WaitTime",
-          "aggregates": "avg",
-          "dimensions": "DiskName",
+          "metrics": "ThreadPool_QueueSize,ThreadPool_RejectedReqs,Thread_Blocked_Time",
+          "aggregates": "max",
+          "dimensions": "ThreadPoolType",
           "nodeName": "#nodeName",
-          "sortBy": "DiskName"
+          "sortBy": "ThreadPool_RejectedReqs"
         },
         "options": {
           "gridPosition": {
-            "row": 9,
-            "col": 0,
+            "row": 3,
+            "col": 5,
             "rowSpan": 3,
-            "colSpan": 6
+            "colSpan": 7
           },
-          "label": "Average Disk Wait Time",
+          "label": "ThreadPool Metrics",
           "keys": false,
-          "fg": "white",
-          "selectedFg": "white",
+          "fg": "yellow",
+          "selectedFg": "yellow",
           "selectedBg": " ",
           "columnSpacing": 1,
           "refreshInterval": 5000
@@ -105,23 +105,23 @@
       },
       {
         "queryParams" : {
-          "metrics": "Disk_ServiceRate",
+          "metrics": "Disk_Utilization",
           "aggregates": "avg",
           "dimensions": "DiskName",
           "nodeName": "#nodeName",
-          "sortBy": "DiskName"
+          "sortBy": "Disk_Utilization"
         },
         "options": {
           "gridPosition": {
-            "row": 9,
-            "col": 6,
+            "row": 0,
+            "col": 9,
             "rowSpan": 3,
-            "colSpan": 6
+            "colSpan": 3
           },
-          "label": "Average Disk Service Rate",
+          "label": "Disk Utilization",
           "keys": false,
-          "fg": "white",
-          "selectedFg": "white",
+          "fg": "yellow",
+          "selectedFg": "yellow",
           "selectedBg": " ",
           "columnSpacing": 1,
           "refreshInterval": 5000
@@ -138,7 +138,7 @@
         },
         "options": {
           "gridPosition": {
-            "row": 0,
+            "row": 6,
             "col": 8,
             "rowSpan": 3,
             "colSpan": 2
@@ -160,7 +160,7 @@
         },
         "options": {
           "gridPosition": {
-            "row": 0,
+            "row": 6,
             "col": 10,
             "rowSpan": 3,
             "colSpan": 2
@@ -183,8 +183,8 @@
         },
         "options": {
           "gridPosition": {
-            "row": 3,
-            "col": 6,
+            "row": 9,
+            "col": 0,
             "rowSpan": 3,
             "colSpan": 3
           },
@@ -206,13 +206,57 @@
         },
         "options": {
           "gridPosition": {
-            "row": 3,
-            "col": 9,
+            "row": 9,
+            "col": 3,
             "rowSpan": 3,
             "colSpan": 3
           },
           "label": "Total GC Collection Time (ms)",
           "labelColor": "white",
+          "barWidth": 12,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams": {
+          "metrics": "CB_TrippedEvents",
+          "aggregates": "sum",
+          "dimensions": "CBType",
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 6,
+            "col": 3,
+            "rowSpan": 3,
+            "colSpan": 5
+          },
+          "label": "Circuit Breaker - Tripped Events (count)",
+          "labelColor": "blue",
+          "barWidth": 20,
+          "xOffset": 2,
+          "maxHeight": 6,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams": {
+          "metrics": "ShardEvents",
+          "aggregates": "sum",
+          "dimensions": "Operation",
+          "nodeName": "#nodeName"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 5,
+            "rowSpan": 3,
+            "colSpan": 4
+          },
+          "label": "Shard Operation (count)",
+          "labelColor": "blue",
           "barWidth": 12,
           "xOffset": 2,
           "maxHeight": 6,
@@ -231,8 +275,8 @@
         },
         "options": {
           "gridPosition": {
-            "row": 6,
-            "col": 0,
+            "row": 9,
+            "col": 6,
             "rowSpan": 3,
             "colSpan": 6
           },

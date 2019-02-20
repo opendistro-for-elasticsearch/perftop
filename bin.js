@@ -20,8 +20,8 @@ var process = require('process');
 var util = require('util');
 
 var clusterOverviewJSON = require('./dashboards/ClusterOverview.json');
-var clusterPerformanceDiagnosticJSON = require('./dashboards/ClusterPerformanceDiagnostic.json');
-var clusterPerformanceInformationalJSON = require('./dashboards/ClusterPerformanceInformational.json');
+var clusterMemoryAnalysisJSON = require('./dashboards/ClusterMemoryAnalysis.json');
+var clusterOperationAnalysisJSON = require('./dashboards/ClusterOperationAnalysis.json');
 var nodeAnalysisJSON = require('./dashboards/NodeAnalysis.json');
 
 var graphGenerator = require('./perf-top/generate-graphs.js');
@@ -35,8 +35,8 @@ parser.addArgument(
   { required: true,
     help: 'Relative path to the dashboard configuration JSON. ' +
     'To load preset dashboard, this may also be: ' +
-    '(1) ClusterOverview, (2) ClusterPerformanceDiagnostic, ' +
-    '(3) ClusterPerformanceInformational, or (4) NodeAnalysis. (e.g. "--dashboard ClusterOverview")'}
+    '(1) ClusterOverview, (2) ClusterMemoryAnalysis, ' +
+    '(3) ClusterOperationAnalysis, or (4) NodeAnalysis. (e.g. "--dashboard ClusterOverview")'}
 );
 parser.addArgument(
   [ '--endpoint' ],
@@ -57,10 +57,10 @@ var args = parser.parseArgs();
 var jsonData;
 if (args.dashboard === 'ClusterOverview') {
   jsonData = clusterOverviewJSON;
-} else if (args.dashboard === 'ClusterPerformanceDiagnostic') {
-  jsonData = clusterPerformanceDiagnosticJSON;
-} else if (args.dashboard === 'ClusterPerformanceInformational') {
-  jsonData = clusterPerformanceInformationalJSON;
+} else if (args.dashboard === 'ClusterMemoryAnalysis') {
+  jsonData = clusterMemoryAnalysisJSON;
+} else if (args.dashboard === 'ClusterOperationAnalysis') {
+  jsonData = clusterOperationAnalysisJSON;
 } else if (args.dashboard === 'NodeAnalysis') {
   jsonData = nodeAnalysisJSON;
 } else {

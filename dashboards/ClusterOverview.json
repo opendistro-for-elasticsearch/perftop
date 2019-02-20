@@ -8,7 +8,7 @@
     "tables": [
       {
         "queryParams" : {
-          "metrics": "CPU_Utilization,IO_ReadThroughtput,IO_WriteThroughput",
+          "metrics": "CPU_Utilization,IO_ReadThroughput,IO_WriteThroughput",
           "aggregates": "sum,sum,sum",
           "dimensions": "Operation,IndexName,ShardID",
           "sortBy": "CPU_Utilization"
@@ -18,9 +18,32 @@
             "row": 0,
             "col": 0,
             "rowSpan": 4,
-            "colSpan": 12
+            "colSpan": 8
           },
           "label": "Resource Metrics",
+          "keys": false,
+          "fg": "green",
+          "selectedFg": "green",
+          "selectedBg": " ",
+          "columnSpacing": 1,
+          "refreshInterval": 5000
+        }
+      },
+      {
+        "queryParams" : {
+          "metrics": "ShardBulkDocs,ShardEvents",
+          "aggregates": "sum,sum",
+          "dimensions": "IndexName,Operation",
+          "sortBy": "ShardEvents"
+        },
+        "options": {
+          "gridPosition": {
+            "row": 0,
+            "col": 8,
+            "rowSpan": 4,
+            "colSpan": 4
+          },
+          "label": "Shard Operation Metrics",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",

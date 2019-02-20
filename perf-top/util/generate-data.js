@@ -239,12 +239,12 @@ function getDataPerNode (rawData) {
     var nodeDimensions = [];
     var nodeData = [];
     if (!('data' in jsonData[nodeName])) {
-      console.error(`Data returned for nodeName=${nodeName} was not in an unexpected format:
+      console.error(`Data returned for nodeName=${nodeName} was in an unexpected format:
         ${JSON.stringify(jsonData[nodeName])}`);
       continue;
     }
     if (!('fields' in jsonData[nodeName].data) && !('records' in jsonData[nodeName].data)) {
-      console.error(`Data returned for nodeName=${nodeName} was not in an unexpected format:
+      console.error(`Data returned for nodeName=${nodeName} was in an unexpected format:
         ${JSON.stringify(jsonData[nodeName])}`);
       continue;
     }

@@ -18,7 +18,7 @@
             "row": 0,
             "col": 0,
             "rowSpan": 4,
-            "colSpan": 8
+            "colSpan": 7
           },
           "label": "Resource Metrics",
           "keys": false,
@@ -33,17 +33,17 @@
         "queryParams" : {
           "metrics": "ShardBulkDocs,ShardEvents",
           "aggregates": "sum,sum",
-          "dimensions": "IndexName,Operation",
+          "dimensions": "Operation,IndexName,ShardID",
           "sortBy": "ShardEvents"
         },
         "options": {
           "gridPosition": {
             "row": 0,
-            "col": 8,
+            "col": 7,
             "rowSpan": 4,
-            "colSpan": 4
+            "colSpan": 5
           },
-          "label": "Shard Operation Metrics",
+          "label": "Shard Workload",
           "keys": false,
           "fg": "green",
           "selectedFg": "green",
@@ -65,7 +65,7 @@
             "row": 4,
             "col": 0,
             "rowSpan": 4,
-            "colSpan": 7.5
+            "colSpan": 7
           },
           "label": "Workload",
           "keys": false,
@@ -132,9 +132,9 @@
         "options": {
           "gridPosition": {
             "row": 4,
-            "col": 7.5,
+            "col": 7,
             "rowSpan": 4,
-            "colSpan": 4.5
+            "colSpan": 5
           },
           "label": "Elasticsearch Operation CPU (cores) per Node",
           "showNthLabel": 3,

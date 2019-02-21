@@ -36,65 +36,34 @@ Refer to [Development section](##configuration###build).
 ## Preset Dashboards
 
 ### ClusterOverview
-- Resource Metrics
-  - Sorted by `CPU_Utilization` in decreasing order
-- Workload
-  - Metrics on `bulk` and `search` operations
-- Elasticsearch Operation CPU (cores) per Node
-  - Aggregaed value of `CPU_Utilization` metric on per-node level
-- Write Throughput (Bps) per Operation
-  - Aggregated `IO_WriteThroughput` metric on cluster-wide level
-- CPU (cores) per Operation
-  - Aggregaed value of `CPU_Utilization` metric on cluster-wide level
+![alt text](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/master/images/ClusterOverview.png)
+This dashboard can be used to see what operations are running on cluster-level and on shard-level.
+With this, users can measure which operation/node is consuming the most CPU
+and what latency the cluster is experiencing.
 
-### ClusterPerformanceDiagnostic
-- Average Disk Wait Time
-- Average Disk Service Rate
-- Maximum Heap usage of Old GC
-- Maximum Heap usage of Young GC
-- Packet Drop Rate (IPv4)
-- Packet Drop Rate (IPv6)
-- Circuit Breaker - Estimated and Configured Limits
-  - Sorted by `CB_EstimatedSize` in decreasing order
-- Circuit Breaker - Tripped Events (count)
-  - Number of `tripped` circuit breaker events on cluster-wide level
-- Average Indexing Throttle Time
-- Master Pending Tasks (count)
-  - Number of pending tasks on per-node level
+### ClusterNetworkMemoryAnalysis
+![alt text](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/master/images/ClusterNetworkMemoryAnalysis.png)
+This dashboard shows shard-level operation, the network, and memory metrics.
+It can be used to analyze which shard is doing the most workload, the amount of data being transmitted by the network,
+which disk is performing poorly, and which circuit breaker type is experiencing OutOfMemory exceptions.
 
-### ClusterPerformanceInformational
-- Thread Pool
-  - Sorted by `ThreadPool_RejectedReqs` in decreasing order
-- Master Pending Tasks (count)
-- Index Merge
-  - Sorted by `Merge_Event` in decreasing order
-- Index Flush
-  - Sorted by `Flush_Event` in decreasing order
-- Page Faults
-  - Sorted by `Paging_MajfltRate` in decreasing order
-- Circuit Breaker - Estimated and Configured Limits
-  - Sorted by `CB_EstimatedSize` in decreasing order
-- Circuit Breaker - Tripped (count)
-  - Number of `tripped` circuit breaker events on cluster-wide level
+### ClusterThreadAnalysis
+![alt text](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/master/images/ClusterThreadAnalysis.png)
+This dashboard shows low-level metrics about threads/threadpools, which can be used to analyze
+which threadpool type is rejecting operations due to its queue being too large,
+which thread is running/waiting for too long and results in blocks,
+and which thread operation is having issues with memory and is having to load it from the disk.
 
 ### NodeAnalysis
-- Supports `--nodename $NODENAME` argument for displaying metric data for ONLY the node that starts with `$NODENAME`.
-- Shard Request Cache Hit and Miss
-  - Sorted by `Cache_Request_Miss` in decreasing order
-- IPv4 Packet Drop Rate (packets/s)
-  - If node name is not given, this will show cluster-wide aggregation value
-- IPv6 Packet Drop Rate (packets/s)
-  - If node name is not given, this will show cluster-wide aggregation value
-- Average Indexing Throttle Time
-- Total GC Collection Events (count)
-  - If node name is not given, this will show cluster-wide aggregation value
-- Total GC Collection Time (ms)
-  - If node name is not given, this will show cluster-wide aggregation value
-- Garbage Collection CPU (cores)
-  - If node name is not given, this will show per-node aggregation value
-- Maxiumum Heap Usage of Old and Young GC
-- Average Disk Wait Time
-- Average Disk Service Rate
+![alt text](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/master/images/NodeAnalysis.png)
+This dashboard has the most wide ranges of metric types.
+It shows shard-level operation metrics, thread metrics, JVM-related metrics
+(e.g. heap usage, garbage collection), and network packet drop rate metrics.
+After gaining some insights from the previous dashboards, users can specify which node to fetch metrics for.
+
+This dashboard supports `--nodename $NODENAME` command-line argument for displaying metric data for
+ONLY the node that starts with `$NODENAME`. If not provided, this dashboard will include all nodes.
+Users can also define different node names for each type of graphs from the JSON dashboard config.
 
 ## Development
 

@@ -36,26 +36,26 @@ Refer to [Development section](##configuration###build).
 ## Preset Dashboards
 
 ### ClusterOverview
-![](/images/ClusterOverview.png | width=300)
+![](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterOverview.png | width=300)
 This dashboard can be used to see what operations are running on cluster-level and on shard-level.
 With this, users can measure which operation/node is consuming the most CPU
 and what latency the cluster is experiencing.
 
 ### ClusterNetworkMemoryAnalysis
-![](/images/ClusterNetworkMemoryAnalysis.png | width=300)
+![](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterNetworkMemoryAnalysis.png | width=300)
 This dashboard shows shard-level operation, the network, and memory metrics.
 It can be used to analyze which shard is doing the most workload, the amount of data being transmitted by the network,
 which disk is performing poorly, and which circuit breaker type is experiencing OutOfMemory exceptions.
 
 ### ClusterThreadAnalysis
-![](/images/ClusterThreadAnalysis.png | width=300)
+![](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterThreadAnalysis.png | width=300)
 This dashboard shows low-level metrics about threads/threadpools, which can be used to analyze
 which threadpool type is rejecting operations due to its queue being too large,
 which thread is running/waiting for too long and results in blocks,
 and which thread operation is having issues with memory and is having to load it from the disk.
 
 ### NodeAnalysis
-![](/images/NodeAnalysis.png | width=300)
+![](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/NodeAnalysis.png | width=300)
 This dashboard has the most wide ranges of metric types.
 It shows shard-level operation metrics, thread metrics, JVM-related metrics
 (e.g. heap usage, garbage collection), and network packet drop rate metrics.

@@ -74,7 +74,7 @@ Users can also define different node names for each type of graphs from the JSON
 - `node` (version >= v10.0 < v11.0)
 - `npm`
 
-### Build/Usage
+### Build and Usage
 1. Clone/download from Github
 2. Run `./gradlew build`. This will run the following:
    1. `npm install` - locally installs dependencies

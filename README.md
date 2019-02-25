@@ -63,6 +63,7 @@ It shows shard-level operation metrics, thread metrics, JVM-related metrics
 (e.g. heap usage, garbage collection), and network packet drop rate metrics.
 After gaining some insights from the previous dashboards, users can specify which node to fetch metrics for.
 
+
 This dashboard supports `--nodename $NODENAME` command-line argument for displaying metric data for
 ONLY the node that starts with `$NODENAME`. If not provided, this dashboard will include all nodes.
 Users can also define different node names for each type of graphs from the JSON dashboard config.
@@ -88,19 +89,19 @@ node ./bin.js --dashboard $JSON
 
 ## Configuration (JSON)
 
-### Required Fields
+### Supported Fields
 - `endpoint` - Define the endpoint for PerfTop. This can be provided via command line argument.
 - `graphs` - For each `tables`, `bars`, and `lines`
   - `queryParams` - Parameters for the HTTP request to fetch data from your endpoint
-    - `metrics` - For bar and line graphs, query for ONE metric that would return a numeric value
-    - `aggregates`
-    - `dimensions`
-    - `dimensionFilters` - Array of dimension values to fetch for.
-    - `nodeName` - The name of the node. PerfTop will do a "startswith" check on this. This can be "#nodeName" and be replaced by the `--nodename $NODE_NAME` command line argument.
-    - `sortBy` - In decreasing order. For tables only.
+    - `metrics` (required) - For bar and line graphs, query for ONE metric that would return a numeric value
+    - `aggregates` (required)
+    - `dimensions` (required)
+    - `dimensionFilters` (optional) - Array of dimension values to fetch for.
+    - `nodeName` (optional) - The name of the node. PerfTop will do a "startswith" check on this. This can be "#nodeName" and be replaced by the `--nodename $NODE_NAME` command line argument.
+    - `sortBy` - In decreasing order. Required for tables only.
   - `gridOptions` - For auto-positioning the graphs. Define `rows` and `cols` with a numeric value. The `gridPosition` will base off on these values.
   - `options` - Graph object options.
-    - `gridPosition` - Defines the position of your graph.
-    - `refreshInterval` - How frequently your graph will generate new data (in milliseconds).
+    - `gridPosition` (required) - Defines the position of your graph.
+    - `refreshInterval` (required) - How frequently your graph will generate new data (in milliseconds).
     - Refer to the [blessed library](https://github.com/chjj/blessed) and
 [blessed-contrib library](https://github.com/yaronn/blessed-contrib) for the other options.

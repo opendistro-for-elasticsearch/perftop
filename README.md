@@ -1,4 +1,4 @@
-#PerfTop in NodeJS
+# PerfTop in NodeJS
 
 PerfTop makes a HTTP request to  `<endpoint>/_performanceanalyzer/metrics`
 and generates visualizations from the output.
@@ -6,15 +6,15 @@ Make sure your running environment has access to your endpoint.
 
 Documentation: [LINK]
 
-##Download
+## Download
 
 Download the executables and preset JSON dashboard configs from s3: [LINK]
 
 Supported platforms: Linux, MacOS
 
-##Demo Usage
+## Demo Usage
 
-###With Executables
+### With Executables
 
 ```
 ./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
@@ -31,31 +31,31 @@ For stderr logging, add `--logfile $logfile`.
 For the preset `dashboards/NodeAnalysisDashboard.json`, pass in `--nodename $NODENAME` to configure your dashboard
 to fetch metrics for a single node.
 
-###Without the Executables
+### Without the Executables
 Refer to [Development section](##development###build\/usage).
 
-##Preset Dashboards
+## Preset Dashboards
 
-###ClusterOverview
+### ClusterOverview
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterOverview.png)
 This dashboard can be used to see what operations are running on cluster-level and on shard-level.
 With this, users can measure which operation/node is consuming the most CPU
 and what latency the cluster is experiencing.
 
-###ClusterNetworkMemoryAnalysis
+### ClusterNetworkMemoryAnalysis
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterNetworkMemoryAnalysis.png)
 This dashboard shows shard-level operation, the network, and memory metrics.
 It can be used to analyze which shard is doing the most workload, the amount of data being transmitted by the network,
 which disk is performing poorly, and which circuit breaker type is experiencing OutOfMemory exceptions.
 
-###ClusterThreadAnalysis
+### ClusterThreadAnalysis
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterThreadAnalysis.png)
 This dashboard shows low-level metrics about threads/threadpools, which can be used to analyze
 which threadpool type is rejecting operations due to its queue being too large,
 which thread is running/waiting for too long and results in blocks,
 and which thread operation is having issues with memory and is having to load it from the disk.
 
-###NodeAnalysis
+### NodeAnalysis
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/NodeAnalysis.png)
 This dashboard has the most wide ranges of metric types.
 It shows shard-level operation metrics, thread metrics, JVM-related metrics
@@ -66,13 +66,13 @@ This dashboard supports `--nodename $NODENAME` command-line argument for display
 ONLY the node that starts with `$NODENAME`. If not provided, this dashboard will include all nodes.
 Users can also define different node names for each type of graphs from the JSON dashboard config.
 
-##Development
+## Development
 
-###Requirements
+### Requirements
 - `node` (version >= v10.0 < v11.0)
 - `npm`
 
-###Build/Usage
+### Build/Usage
 1. Clone/download from Github
 2. Run `./gradlew build`. This will run the following:
    1. `npm install` - locally installs dependencies
@@ -85,9 +85,9 @@ To run PerfTop without (re)creating the executables every code change:
 node ./bin.js --dashboard $JSON
 ```
 
-##Configuration (JSON)
+## Configuration (JSON)
 
-###Required Fields
+### Required Fields
 - `endpoint` - Define the endpoint for PerfTop. This can be provided via command line argument.
 - `graphs` - For each `tables`, `bars`, and `lines`
   - `queryParams` - Parameters for the HTTP request to fetch data from your endpoint

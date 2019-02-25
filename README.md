@@ -37,18 +37,20 @@ Refer to [Development section](##development###build\/usage).
 ## Preset Dashboards
 
 ### ClusterOverview
+<img src="./images/ClusterOverview.png" alt="term" width="800">
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterOverview.png)
 This dashboard can be used to see what operations are running on cluster-level and on shard-level.
-With this, users can measure which operation/node is consuming the most CPU
-and what latency the cluster is experiencing.
+With this, users can measure which operation/node is consuming the most CPU and what latency the cluster is experiencing.
 
 ### ClusterNetworkMemoryAnalysis
+<img src="./images/ClusterNetworkMemoryAnalysis.png" alt="term" width="800">
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterNetworkMemoryAnalysis.png)
 This dashboard shows shard-level operation, the network, and memory metrics.
 It can be used to analyze which shard is doing the most workload, the amount of data being transmitted by the network,
 which disk is performing poorly, and which circuit breaker type is experiencing OutOfMemory exceptions.
 
 ### ClusterThreadAnalysis
+<img src="./images/ClusterThreadAnalysis.png" alt="term" width="800">
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/ClusterThreadAnalysis.png)
 This dashboard shows low-level metrics about threads/threadpools, which can be used to analyze
 which threadpool type is rejecting operations due to its queue being too large,
@@ -56,6 +58,7 @@ which thread is running/waiting for too long and results in blocks,
 and which thread operation is having issues with memory and is having to load it from the disk.
 
 ### NodeAnalysis
+<img src="./images/NodeAnalysis.png" alt="term" width="800">
 ![Screenshot](https://github.com/mauve-hedgehog/opendistro-elasticsearch-perftop/tree/yeajung-update/images/NodeAnalysis.png)
 This dashboard has the most wide ranges of metric types.
 It shows shard-level operation metrics, thread metrics, JVM-related metrics

@@ -33,7 +33,7 @@
         "queryParams" : {
           "metrics": "ShardBulkDocs,ShardEvents",
           "aggregates": "sum,sum",
-          "dimensions": "Operation,IndexName,ShardID",
+          "dimensions": "Operation,IndexName",
           "sortBy": "ShardEvents"
         },
         "options": {

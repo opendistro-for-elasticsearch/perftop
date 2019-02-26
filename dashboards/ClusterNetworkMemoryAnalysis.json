@@ -16,9 +16,9 @@
         "options": {
           "gridPosition": {
             "row": 4,
-            "col": 6,
+            "col": 9,
             "rowSpan": 4,
-            "colSpan": 2
+            "colSpan": 3
           },
           "label": "Average Disk Utilization Rate",
           "keys": false,
@@ -38,10 +38,10 @@
         },
         "options": {
           "gridPosition": {
-            "row": 4,
-            "col": 8,
+            "row": 0,
+            "col": 9,
             "rowSpan": 4,
-            "colSpan": 2
+            "colSpan": 3
           },
           "label": "Average Disk Wait Time",
           "keys": false,
@@ -62,9 +62,9 @@
         "options": {
           "gridPosition": {
             "row": 4,
-            "col": 10,
+            "col": 6,
             "rowSpan": 4,
-            "colSpan": 2
+            "colSpan": 3
           },
           "label": "Average Disk Service Rate",
           "keys": false,
@@ -77,9 +77,9 @@
       },
       {
         "queryParams" : {
-          "metrics": "ShardEvents",
-          "aggregates": "sum",
-          "dimensions": "Operation,IndexName,ShardID",
+          "metrics": "ShardBulkDocs,ShardEvents",
+          "aggregates": "sum,sum",
+          "dimensions": "Operation,IndexName",
           "sortBy": "ShardEvents"
         },
         "options": {
@@ -87,7 +87,7 @@
             "row": 0,
             "col": 0,
             "rowSpan": 4,
-            "colSpan": 6
+            "colSpan": 5
           },
           "label": "Shard Operation Metrics",
           "keys": false,
@@ -133,13 +133,13 @@
         "options": {
           "gridPosition": {
             "row": 0,
-            "col": 6,
+            "col": 5,
             "rowSpan": 4,
-            "colSpan": 6
+            "colSpan": 4
           },
           "label": "Shard Operation - Sum by Operation (count)",
           "labelColor": "blue",
-          "barWidth": 20,
+          "barWidth": 15,
           "xOffset": 2,
           "maxHeight": 6,
           "refreshInterval": 5000
@@ -161,7 +161,7 @@
             "rowSpan": 4,
             "colSpan": 6
           },
-          "label": "Network Throughput In (count)",
+          "label": "Network Throughput In (B/s)",
           "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },
@@ -183,7 +183,7 @@
             "rowSpan": 4,
             "colSpan": 6
           },
-          "label": "Network Throughput Out (count)",
+          "label": "Network Throughput Out (B/s)",
           "showNthLabel": 3,
           "showLegend": true,
           "legend": { "width": 10 },

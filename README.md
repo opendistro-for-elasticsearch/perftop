@@ -1,6 +1,6 @@
 # PerfTop in NodeJS
 
-PerfTop makes a HTTP request to  `<endpoint>/_performanceanalyzer/metrics`
+PerfTop makes a HTTP request to  `<endpoint>/_opendistro/_performanceanalyzer/metrics`
 and generates visualizations from the output.
 Make sure your running environment has access to your endpoint.
 

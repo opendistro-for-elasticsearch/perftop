@@ -17,7 +17,7 @@ var http = require('http');
 var url = require('url');
 
 /**
- * Makes a HTTP request to "{endpoint}/_performanceanalyzer/metrics?metrics=${metrics}&agg=${aggregates}&dim=${dimensions}&nodes=all"
+ * Makes a HTTP request to "{endpoint}/_opendistro/_performanceanalyzer/metrics?metrics=${metrics}&agg=${aggregates}&dim=${dimensions}&nodes=all"
  * and parses the response to a hashmap object.
  *
  * @param {string} endpoint - endpoint for the metric query.
@@ -31,7 +31,7 @@ function getMetricData (endpoint, metrics, aggregates, dimensions, done) {
   var aggParam = (aggregates) ? `&agg=${aggregates}` : '&agg=';
   var dimParam = (dimensions) ? `&dim=${dimensions}` : '&dim=';
 
-  var httpOptions = getHttpURLOptions(endpoint, `/_performanceanalyzer/metrics?${metricParam}${aggParam}${dimParam}&nodes=all`);
+  var httpOptions = getHttpURLOptions(endpoint, `/_opendistro/_performanceanalyzer/metrics?${metricParam}${aggParam}${dimParam}&nodes=all`);
   makeHttpRequest(httpOptions, function (response) {
     if (response === '') {
       done({});
@@ -83,14 +83,14 @@ function makeHttpRequest (httpOptions, done) {
 }
 
 /**
- * Makes a HTTP request to "{endpoint}/_performanceanalyzer/metrics/units"
+ * Makes a HTTP request to "{endpoint}/_opendistro/_performanceanalyzer/metrics/units"
  * and parses the response to a hashmap object.
  *
  * @param {string} endpoint - endpoint for the query.
  * @param {string} done - callback for the HTTP response.
  */
 function getMetricUnits (endpoint, done) {
-  var httpOptions = getHttpURLOptions(endpoint, '/_performanceanalyzer/metrics/units');
+  var httpOptions = getHttpURLOptions(endpoint, '/_opendistro/_performanceanalyzer/metrics/units');
   makeHttpRequest(httpOptions, function (response) {
     if (response === '') {
       console.error('Failed to retrieve units for metrics. HTTP response was empty.');

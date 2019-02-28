@@ -20,8 +20,8 @@ Supported platforms: Linux, MacOS
 ./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
 ```
 `--dashboard` argument can be passed in as the relative path to the JSON configuration file.
-For preset dashboards, it can also be passed in as `ClusterOverview`, `ClusterPerformanceDiagnostic`,
-`ClusterPerformanceInformational`, or `NodeAnalysis` instead of the JSON file path (e.g. `--dashboard ClusterOverview`).
+For preset dashboards, it can also be passed in as `ClusterOverview`, `ClusterNetworkMemoryAnalysis`,
+`ClusterThreadAnalysis`, or `NodeAnalysis` instead of the JSON file path (e.g. `--dashboard ClusterOverview`).
 For what each dashboard entails, refer to "Preset Dashboards" section.
 
 From a cluster node with Performance Analyzer REST API on port 9600, set your `ENDPOINT` to `localhost:9600`.

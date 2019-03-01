@@ -1,40 +1,36 @@
-# PerfTop in NodeJS
+# PerfTop
 
-PerfTop makes a HTTP request to  `<endpoint>/_opendistro/_performanceanalyzer/metrics`
-and generates visualizations from the output.
-Make sure your running environment has access to your endpoint.
+The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, shard performance, and more. Use custom JSON templates to create the dashboards you need to diagnose your cluster performance.
 
-Documentation: [LINK]
+## Run
+
+## Build
+
+Prerequisites:
+- `node` (version >= v10.0 < v11.0)
+- `npm`
+
+1. Clone/download from Github
+2. Run `./gradlew build`. This will run the following:
+   1. `npm install` - locally installs dependencies
+   2. `npm run build` - creates "perf-top-*" executables
+3. For cleaning, run `./gradlew clean` which will run:
+   1. `npm run clean` - deletes locally installed dependencies and executables
+
+To run PerfTop without (re)creating the executables every code change:
+```
+node ./bin.js --dashboard $JSON
+```
+
+## Documentation
+
+For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
 
 ## Download
 
 Download the executables and preset JSON dashboard configs from s3: [LINK]
 
-Supported platforms: Linux, MacOS
-
-## Demo Usage
-
-### With Executables
-
-```
-./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
-```
-`--dashboard` argument can be passed in as the relative path to the JSON configuration file.
-For preset dashboards, it can also be passed in as `ClusterOverview`, `ClusterNetworkMemoryAnalysis`,
-`ClusterThreadAnalysis`, or `NodeAnalysis` instead of the JSON file path (e.g. `--dashboard ClusterOverview`).
-For what each dashboard entails, refer to "Preset Dashboards" section.
-
-From a cluster node with Performance Analyzer REST API on port 9600, set your `ENDPOINT` to `localhost:9600`.
-
-For stderr logging, add `--logfile $logfile`.
-
-For the preset `dashboards/NodeAnalysisDashboard.json`, pass in `--nodename $NODENAME` to configure your dashboard
-to fetch metrics for a single node.
-
-For exiting out of the screen, 'Escape', 'q', and 'Control-c' are supported.
-
-### Without the Executables
-Refer to "Development/Build And Usage" section.
+Supported platforms: Linux, macOS
 
 ## Preset Dashboards
 
@@ -89,40 +85,7 @@ Users can also define different node names for each type of graphs from the JSON
 * "Heap Usage" is sorted by Heap_Used.
 * If no `--nodename $NODENAME` is provided, the bar graphs will be aggregated metrics on cluster-level.
 
-## Development
+## License
 
-### Requirements
-- `node` (version >= v10.0 < v11.0)
-- `npm`
+This tool is licensed under the Apache 2.0 License.
 
-### Build and Usage
-1. Clone/download from Github
-2. Run `./gradlew build`. This will run the following:
-   1. `npm install` - locally installs dependencies
-   2. `npm run build` - creates "perf-top-*" executables
-3. For cleaning, run `./gradlew clean` which will run:
-   1. `npm run clean` - deletes locally installed dependencies and executables
-
-To run PerfTop without (re)creating the executables every code change:
-```
-node ./bin.js --dashboard $JSON
-```
-
-## Configuration (JSON)
-
-### Supported Fields
-- `endpoint` - Define the endpoint for PerfTop. This can be provided via command line argument.
-- `graphs` - For each `tables`, `bars`, and `lines`
-  - `queryParams` - Parameters for the HTTP request to fetch data from your endpoint
-    - `metrics` (required) - For bar and line graphs, query for ONE metric that would return a numeric value
-    - `aggregates` (required)
-    - `dimensions` (required)
-    - `dimensionFilters` (optional) - Array of dimension values to fetch for.
-    - `nodeName` (optional) - The name of the node. PerfTop will do a "startswith" check on this. This can be "#nodeName" and be replaced by the `--nodename $NODE_NAME` command line argument.
-    - `sortBy` - In decreasing order. Required for tables only.
-  - `gridOptions` - For auto-positioning the graphs. Define `rows` and `cols` with a numeric value. The `gridPosition` will base off on these values.
-  - `options` - Graph object options.
-    - `gridPosition` (required) - Defines the position of your graph.
-    - `refreshInterval` (required) - How frequently your graph will generate new data (in milliseconds).
-    - Refer to the [blessed library](https://github.com/chjj/blessed) and
-[blessed-contrib library](https://github.com/yaronn/blessed-contrib) for the other options.

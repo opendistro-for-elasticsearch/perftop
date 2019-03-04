@@ -28,7 +28,7 @@ var graphGenerator = require('./perf-top/generate-graphs.js');
 
 // Parse command line arguments
 var parser = new argumentParser({
-  description: 'For "Getting Started" guide and documentation, visit [LINK].' });
+  description: 'For "Getting Started" guide and documentation, visit https://opendistro.github.io/for-elasticsearch-docs' });
 
 parser.addArgument(
   [ '--dashboard' ],

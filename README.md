@@ -4,12 +4,12 @@ The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, 
 
 ## Documentation
 
-For more information, see the [link](https://opendistro.github.io/for-elasticsearch-docs).
+For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
 
 ## Download
 
 Download the executables and preset JSON dashboard configs from
-[documentation](https://opendistro.github.io/for-elasticsearch-docs).
+[link](https://opendistro.github.io/for-elasticsearch-docs).
 
 Supported platforms: Linux, macOS
 

@@ -29,7 +29,6 @@ Prerequisites:
 2. Run `./gradlew build`. This will run the following:
    1. `npm install` - locally installs dependencies
    2. `npm run build` - creates "perf-top-*" executables for Linux and MacOS.
-   For build for only one platform, run `npm run build-linux` or `npm run build-macos`.
 3. For cleaning, run `./gradlew clean` which will run:
    1. `npm run clean` - deletes locally installed dependencies and executables
 

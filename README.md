@@ -4,7 +4,7 @@ The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, 
 
 ## Documentation
 
-For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
+For more information, see the [link](https://opendistro.github.io/for-elasticsearch-docs).
 
 ## Download
 
@@ -28,7 +28,7 @@ Prerequisites:
 1. Clone/download from Github
 2. Run `./gradlew build`. This will run the following:
    1. `npm install` - locally installs dependencies
-   2. `npm run build` - creates "perf-top-*" executables for Linux and MacOS.
+   2. `npm run build` - creates "perf-top-*" executables.
 3. For cleaning, run `./gradlew clean` which will run:
    1. `npm run clean` - deletes locally installed dependencies and executables
 

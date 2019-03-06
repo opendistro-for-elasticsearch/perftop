@@ -26,10 +26,18 @@ node {
 ext {
     opendistroVersion = '0.7.0'
     isSnapshot = "true" == System.getProperty("build.snapshot", "true")
+    isLinux = "true" == System.getProperty("build.linux", "false")
+    isMacOS = "true" == System.getProperty("build.macos", "false")
 }
 
 group = "com.amazon.opendistroforelasticsearch"
 version = "${opendistroVersion}.0"
+if (isLinux) {
+    version += "-LINUX"
+}
+if (isMacOS) {
+    version += "-MACOS"
+}
 if (isSnapshot) {
     version += "-SNAPSHOT"
 }
@@ -51,7 +59,15 @@ test {
 licenseHeaders.enabled = false
 
 task npmRunBuild(type: NpmTask, dependsOn: 'npmInstall') {
-    args = args = ['run', 'build']
+    if (isLinux) {
+        args = ['run', 'build-linux']
+    }
+    if (isMacOS) {
+        args = ['run', 'build-macos']
+    }
+    if (!isLinux && !isMacOS) {
+        args = ['run', 'build']
+    }
 }
 
 task npmRunClean(type: NpmTask) {
@@ -79,8 +95,12 @@ bundlePlugin {
     exclude "perf-top*.jar"
     exclude "plugin-descriptor.properties"
     from ("build/") {
-        include "perf-top-linux"
-        include "perf-top-macos"
+        if (isLinux) {
+            include "perf-top-linux"
+        }
+        if (isMacOS) {
+            include "perf-top-macos"
+        }
     }
     from ("dashboards/") {
         into "dashboards/"

@@ -5,6 +5,8 @@
   "bin": "bin.js",
   "scripts": {
     "build": "./node_modules/.bin/pkg . --targets linux,macos --out-path ./build",
+    "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",
+    "build-macos": "./node_modules/.bin/pkg . --targets macos --output ./build/perf-top-macos",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
     "lint": "./node_modules/.bin/eslint perf-top/ bin.js",
     "test": "echo \"Error: no test specified\" && exit 1"

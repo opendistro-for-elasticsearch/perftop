@@ -94,11 +94,13 @@ esplugin {
 bundlePlugin {
     exclude "perf-top*.jar"
     exclude "plugin-descriptor.properties"
-    from ("build/") {
-        if (isLinux) {
+    if (isLinux) {
+        from ("build/") {
             include "perf-top-linux"
         }
-        if (isMacOS) {
+    }
+    if (isMacOS) {
+        from ("build/") {
             include "perf-top-macos"
         }
     }

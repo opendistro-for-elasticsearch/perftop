@@ -94,3 +94,7 @@ node ./bin.js --dashboard $JSON
 
 This tool is licensed under the Apache 2.0 License.
 
+## Copyright
+
+Open Distro For Elasticsearch Security Copyright 2019- Amazon.com, Inc. or its affiliates. All Rights Reserved.
+

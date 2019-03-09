@@ -2,11 +2,6 @@
 
 The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, shard performance, and more. Use custom JSON templates to create the dashboards you need to diagnose your cluster performance.
 
-## Documentation
-
-For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
-
-
 ## Preset Dashboards
 
 * All sorts are in decreasing order.
@@ -59,6 +54,10 @@ Users can also define different node names for each type of graphs from the JSON
 * "Thread Pool - Queue Size and Rejected Requests" is sorted by ThreadPool_RejectedReqs.
 * "Heap Usage" is sorted by Heap_Used.
 * If no `--nodename $NODENAME` is provided, the bar graphs will be aggregated metrics on cluster-level.
+
+## Documentation
+
+For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
 
 ## Download
 

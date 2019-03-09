@@ -6,36 +6,6 @@ The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, 
 
 For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
 
-## Download
-
-Download the executables and preset JSON dashboard configs from
-[link](https://opendistro.github.io/for-elasticsearch-docs).
-
-Supported platforms: Linux, macOS
-
-## Run
-
-```
-./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
-```
-
-## Build
-
-Prerequisites:
-- `node` (version >= v10.0 < v11.0)
-- `npm`
-
-1. Clone/download from Github
-2. Run `./gradlew build`. This will run the following:
-   1. `npm install` - locally installs dependencies
-   2. `npm run build` - creates "perf-top-*" executables.
-3. For cleaning, run `./gradlew clean` which will run:
-   1. `npm run clean` - deletes locally installed dependencies and executables
-
-To run PerfTop without (re)creating the executables every code change:
-```
-node ./bin.js --dashboard $JSON
-```
 
 ## Preset Dashboards
 
@@ -89,6 +59,37 @@ Users can also define different node names for each type of graphs from the JSON
 * "Thread Pool - Queue Size and Rejected Requests" is sorted by ThreadPool_RejectedReqs.
 * "Heap Usage" is sorted by Heap_Used.
 * If no `--nodename $NODENAME` is provided, the bar graphs will be aggregated metrics on cluster-level.
+
+## Download
+
+Download the executables and preset JSON dashboard configs from
+[link](https://opendistro.github.io/for-elasticsearch-docs).
+
+Supported platforms: Linux, macOS
+
+## Run
+
+```
+./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
+```
+
+## Build
+
+Prerequisites:
+- `node` (version >= v10.0 < v11.0)
+- `npm`
+
+1. Clone/download from Github
+2. Run `./gradlew build`. This will run the following:
+   1. `npm install` - locally installs dependencies
+   2. `npm run build` - creates "perf-top-*" executables.
+3. For cleaning, run `./gradlew clean` which will run:
+   1. `npm run clean` - deletes locally installed dependencies and executables
+
+To run PerfTop without (re)creating the executables every code change:
+```
+node ./bin.js --dashboard $JSON
+```
 
 ## License
 

@@ -57,12 +57,11 @@ Users can also define different node names for each type of graphs from the JSON
 
 ## Documentation
 
-For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs).
+For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs/).
 
 ## Download
 
-Download the executables and preset JSON dashboard configs from
-[link](https://opendistro.github.io/for-elasticsearch-docs).
+Download the executables and preset JSON dashboard configs [here](https://opendistro.github.io/for-elasticsearch/downloads.html).
 
 Supported platforms: Linux, macOS
 
@@ -90,9 +89,19 @@ To run PerfTop without (re)creating the executables every code change:
 node ./bin.js --dashboard $JSON
 ```
 
-## License
+## Code of Conduct
 
-This tool is licensed under the Apache 2.0 License.
+This project has adopted an [Open Source Code of Conduct](https://opendistro.github.io/for-elasticsearch/codeofconduct.html).
+
+
+## Security issue notifications
+
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public GitHub issue.
+
+
+## Licensing
+
+See the [LICENSE](./LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.
 
 ## Copyright
 

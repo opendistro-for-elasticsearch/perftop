@@ -2,7 +2,9 @@
 
 ## Overview
 
-<img src="../images/ArchitectureDiagram.png" alt="term" width="700" align="middle">
+<p align="center">
+    <img src="../images/ArchitectureDiagram.png" alt="term" width="700">
+</p>
 
 PerfTop CLI is a front-end visualization tool for the Performance Analyzer plugin (PA) so that users can conveniently monitor Elasticsearch cluster performance in real-time.
 

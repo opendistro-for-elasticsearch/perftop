@@ -1,4 +1,5 @@
 .github
+.gitignore
 gradle
 images
 CODE_OF_CONDUCT.md

@@ -6,6 +6,7 @@
   "bin": {
     "perftop": "./bin/global.js"
   },
+  "preferGlobal": "true",
   "scripts": {
     "build": "./node_modules/.bin/pkg . --targets linux,macos --out-path ./build",
     "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",

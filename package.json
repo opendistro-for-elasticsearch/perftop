@@ -3,7 +3,9 @@
   "version": "0.7.0",
   "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
   "author": "Amazon Web Services",
-  "bin": "bin.js",
+  "bin": {
+    "perftop": "./bin/global.js"
+  },
   "scripts": {
     "build": "./node_modules/.bin/pkg . --targets linux,macos --out-path ./build",
     "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",

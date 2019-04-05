@@ -4,11 +4,10 @@
   "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
   "author": "Amazon Web Services",
   "bin": {
-    "perftop": "./bin/global.js"
+    "perf-top": "./bin/global.js"
   },
   "preferGlobal": "true",
   "scripts": {
-    "build": "./node_modules/.bin/pkg . --targets linux,macos --out-path ./build",
     "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",
     "build-macos": "./node_modules/.bin/pkg . --targets macos --output ./build/perf-top-macos",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",

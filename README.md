@@ -2,30 +2,6 @@
 
 The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, shard performance, and more. Use custom JSON templates to create the dashboards you need to diagnose your cluster performance.
 
-## Installation
-Install with npm:
-
-```bash
-npm install -g @aws/opendistro-for-elasticsearch-perftop
-```
-Excutables:
-
-Download the executables and preset JSON dashboard configs [here](https://opendistro.github.io/for-elasticsearch/downloads.html).
-
-Supported platforms: Linux, macOS
-
-## Usage
-
-npm:
-```bash
-perftop --dashboard NodeAnalysis
-```
-Excutables:
-
-```
-./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
-```
-
 ## Preset Dashboards
 
 * All sorts are in decreasing order.
@@ -100,6 +76,31 @@ Prerequisites:
 To run PerfTop without (re)creating the executables every code change:
 ```
 node ./lib/bin.js --dashboard $JSON
+```
+
+
+## Installation
+Install with npm:
+
+```bash
+npm install -g @aws/opendistro-for-elasticsearch-perftop
+```
+Excutables:
+
+Download the executables and preset JSON dashboard configs [here](https://opendistro.github.io/for-elasticsearch/downloads.html).
+
+Supported platforms: Linux, macOS
+
+## Usage
+
+npm:
+```bash
+perf-top --dashboard NodeAnalysis
+```
+Excutables:
+
+```
+./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
 ```
 
 ## Code of Conduct

@@ -2,8 +2,6 @@
 
 The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, shard performance, and more. Use custom JSON templates to create the dashboards you need to diagnose your cluster performance.
 
-## Getting Started
-----
 ## Installation
 Install with npm:
 

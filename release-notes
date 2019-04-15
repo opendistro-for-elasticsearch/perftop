@@ -1,11 +1,11 @@
-## 2019-01-31, Version 1.0.0 (Current)
+## Version 0.8.0 (Current)
+## New Features
+This is the release of Open Distro PerfTop CLI tool that extends installation capabilities via NPM.
+
+## 2019-01-31, Version 0.7.0
 
 ### New Features
 
-This is the first release of the Open Distro PerfTop tool.
+This is the first release of the Open Distro PerfTop CLI tool.
 
-PerfTop enables users to visualize and monitor Elasticsearch state in real time using metrics from the Open Distro Performance Analyzer using a sleek Curses-based interface. It is based on Javascript. The dashboard is fully configurable, with options ranging from tables to bar and line graphs. PerfTop comes with four preset dashboard configuration JSON files. The source builds executable binaries for Linux, MacOS, and Windows.
-
-### Commits
-WIP - Will be squashing to one commit in future
-
+PerfTop enables users to visualize and monitor Elasticsearch state in real time using metrics from the Open Distro Performance Analyzer using a sleek Curses-based interface. It is based on Javascript. The dashboard is fully configurable, with options ranging from tables to bar and line graphs. PerfTop comes with four preset dashboard configuration JSON files. The source builds executable binaries for Linux and MacOS.

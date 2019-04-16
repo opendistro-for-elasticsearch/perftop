@@ -65,9 +65,6 @@ task npmRunBuild(type: NpmTask, dependsOn: 'npmInstall') {
     if (isMacOS) {
         args = ['run', 'build-macos']
     }
-    if (!isLinux && !isMacOS) {
-        args = ['run', 'build']
-    }
 }
 
 task npmRunClean(type: NpmTask) {

@@ -59,13 +59,25 @@ Users can also define different node names for each type of graphs from the JSON
 
 For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs/).
 
-## Download
+## Installation
+Install with npm:
+
+```bash
+npm install -g @aws/opendistro-for-elasticsearch-perftop
+```
+Excutables:
 
 Download the executables and preset JSON dashboard configs [here](https://opendistro.github.io/for-elasticsearch/downloads.html).
 
 Supported platforms: Linux, macOS
 
-## Run
+## Usage
+
+npm:
+```bash
+perf-top --dashboard NodeAnalysis
+```
+Excutables:
 
 ```
 ./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
@@ -86,7 +98,7 @@ Prerequisites:
 
 To run PerfTop without (re)creating the executables every code change:
 ```
-node ./bin.js --dashboard $JSON
+node ./lib/bin.js --dashboard $JSON
 ```
 
 ## Code of Conduct

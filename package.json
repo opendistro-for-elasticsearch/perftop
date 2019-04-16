@@ -1,11 +1,13 @@
 {
   "name": "@aws/opendistro-for-elasticsearch-perftop",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
   "author": "Amazon Web Services",
-  "bin": "bin.js",
+  "bin": {
+    "perf-top": "./bin/global.js"
+  },
+  "preferGlobal": "true",
   "scripts": {
-    "build": "./node_modules/.bin/pkg . --targets linux,macos --out-path ./build",
     "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",
     "build-macos": "./node_modules/.bin/pkg . --targets macos --output ./build/perf-top-macos",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",

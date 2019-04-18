@@ -1,4 +1,7 @@
-## Version 0.8.0 (Current)
+## Version 0.9.0 (Current)
+This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 0.9.
+
+## Version 0.8.0
 ## New Features
 This is the release of Open Distro PerfTop CLI tool that extends installation capabilities via NPM.
 

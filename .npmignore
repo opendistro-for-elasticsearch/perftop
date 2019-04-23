@@ -1,0 +1,15 @@
+.github
+.gitignore
+.gradle
+gradle
+images
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+CONTRIBUTORS.md
+LICENSE
+NOTICE
+THIRD-PARTY-LICENSES.txt
+build.gradle
+gradlew
+release-notes
+package-lock.json

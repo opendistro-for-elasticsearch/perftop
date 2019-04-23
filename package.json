@@ -1,10 +1,13 @@
 {
-  "name": "perf-top",
-  "version": "1.0.0",
-  "description": "PerfTop",
-  "bin": "bin.js",
+  "name": "@aws/opendistro-for-elasticsearch-perftop",
+  "version": "0.9.0",
+  "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
+  "author": "Amazon Web Services",
+  "bin": {
+    "perf-top": "./bin/global.js"
+  },
+  "preferGlobal": "true",
   "scripts": {
-    "build": "./node_modules/.bin/pkg . --targets linux,macos --out-path ./build",
     "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",
     "build-macos": "./node_modules/.bin/pkg . --targets macos --output ./build/perf-top-macos",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
@@ -13,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenDistro/OpenES-ESTop"
+    "url": "https://github.com/opendistro-for-elasticsearch/perftop"
   },
   "license": "Apache-2.0",
   "dependencies": {

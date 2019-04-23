@@ -59,13 +59,25 @@ Users can also define different node names for each type of graphs from the JSON
 
 For more information, see the [documentation](https://opendistro.github.io/for-elasticsearch-docs/).
 
-## Download
+## Installation
+Install with npm:
+
+```bash
+npm install -g @aws/opendistro-for-elasticsearch-perftop
+```
+Excutables:
 
 Download the executables and preset JSON dashboard configs [here](https://opendistro.github.io/for-elasticsearch/downloads.html).
 
 Supported platforms: Linux, macOS
 
-## Run
+## Usage
+
+npm:
+```bash
+perf-top --dashboard NodeAnalysis
+```
+Excutables:
 
 ```
 ./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
@@ -80,13 +92,13 @@ Prerequisites:
 1. Clone/download from Github
 2. Run `./gradlew build`. This will run the following:
    1. `npm install` - locally installs dependencies
-   2. `npm run build` - creates "perf-top-*" executables.
+   2. `npm run build-{linux/macos}` - creates "perf-top-{linux/macos}" executables.
 3. For cleaning, run `./gradlew clean` which will run:
    1. `npm run clean` - deletes locally installed dependencies and executables
 
 To run PerfTop without (re)creating the executables every code change:
 ```
-node ./bin.js --dashboard $JSON
+node ./lib/bin.js --dashboard $JSON
 ```
 
 ## Code of Conduct

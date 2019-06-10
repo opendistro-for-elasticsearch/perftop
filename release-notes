@@ -1,4 +1,9 @@
-## Version 0.9.0 (Current)
+## Version 1.0.0 (Current)
+This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 1.0.
+
+Removed package vulnerabilities.
+
+## Version 0.9.0
 This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 0.9.
 
 ## Version 0.8.0

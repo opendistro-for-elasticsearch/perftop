@@ -22,9 +22,9 @@
   "dependencies": {
     "argparse": "1.0.10",
     "blessed": "0.1.54",
-    "blessed-contrib": "^4.8.16",
+    "blessed-contrib": "^4.8.19",
     "console-stamp": "0.2.7",
-    "pkg": "4.3.7"
+    "pkg": "^4.4.7"
   },
   "devDependencies": {
     "eslint": "^5.12.1",

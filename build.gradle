@@ -1,7 +1,7 @@
 buildscript {
 
     ext {
-        es_version = System.getProperty("es.version", "7.2.0")
+        es_version = System.getProperty("es.version", "7.7.0")
     }
     // This isn't applying from repositories.gradle so repeating it here
     repositories {
@@ -20,11 +20,11 @@ plugins {
 
 node {
     version = "10.15.0"
-    download = true
+    download = false
 }
 
 ext {
-    opendistroVersion = '1.2.0'
+    opendistroVersion = '1.7.0'
     isSnapshot = "true" == System.getProperty("build.snapshot", "true")
     isLinux = "true" == System.getProperty("build.linux", "false")
     isMacOS = "true" == System.getProperty("build.macos", "false")
@@ -110,4 +110,4 @@ bundlePlugin {
 // The testingConventions task now mandates atleast one of the integ test tasks to be performed.
 // Since perftop is not really a plugin on its own, it fails the plugin install step during the integ tests. So, 
 // skip running testingConventions task.
-gradle.startParameter.excludedTaskNames += ["integTestCluster#wait", "integTestRunner", "testingConventions"]
+gradle.startParameter.excludedTaskNames += ["integTestRunner", "testingConventions"]

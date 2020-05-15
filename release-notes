@@ -1,5 +1,5 @@
-## Version 1.7.0 (Current)
-This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 1.7.
+## Version 1.8.0 (Current)
+This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 1.8.
 - Additionally includes support for connecting to clusters with basic-auth thanks to contributions from [@keety](https://github.com/keety)
 
 ## Version 1.2.0

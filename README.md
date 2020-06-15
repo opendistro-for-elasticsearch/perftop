@@ -1,3 +1,8 @@
+[![CD](https://github.com/opendistro-for-elasticsearch/performance-analyzer/workflows/CD/badge.svg)](https://github.com/opendistro-for-elasticsearch/perftop/actions?query=workflow%3ACD)
+[![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://opendistro.github.io/for-elasticsearch-docs/docs/pa/)
+[![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/performance-analyzer/)
+![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
+
 # PerfTop
 
 The PerfTop CLI provides pre-configured dashboards for analyzing cluster, node, shard performance, and more. Use custom JSON templates to create the dashboards you need to diagnose your cluster performance.

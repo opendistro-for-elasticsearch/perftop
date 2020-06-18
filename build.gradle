@@ -1,7 +1,7 @@
 buildscript {
 
     ext {
-        es_version = System.getProperty("es.version", "7.7.0")
+        es_version = System.getProperty("es.version", "7.7.1")
     }
     // This isn't applying from repositories.gradle so repeating it here
     repositories {
@@ -24,7 +24,7 @@ node {
 }
 
 ext {
-    opendistroVersion = '1.8.0'
+    opendistroVersion = '1.8.1'
     isSnapshot = "true" == System.getProperty("build.snapshot", "true")
     isLinux = "true" == System.getProperty("build.linux", "false")
     isMacOS = "true" == System.getProperty("build.macos", "false")
@@ -57,6 +57,7 @@ test {
     enabled = false
 }
 licenseHeaders.enabled = false
+validateNebulaPom.enabled = false
 
 task npmRunBuild(type: NpmTask, dependsOn: 'npmInstall') {
     if (isLinux) {

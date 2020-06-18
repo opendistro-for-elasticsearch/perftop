@@ -57,6 +57,7 @@ test {
     enabled = false
 }
 licenseHeaders.enabled = false
+validateNebulaPom.enabled = false
 
 task npmRunBuild(type: NpmTask, dependsOn: 'npmInstall') {
     if (isLinux) {

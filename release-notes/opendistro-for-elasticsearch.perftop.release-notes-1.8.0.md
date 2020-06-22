@@ -1,4 +1,4 @@
-## Version 1.8.0 (Current)
+## Version 1.8.0
 
 This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 1.8.
 

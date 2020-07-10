@@ -1,0 +1,180 @@
+{
+  "endpoint": "localhost:9600",
+  "gridOptions": {
+    "rows": 12,
+    "cols": 12
+  },
+  "queryParams": {
+    "name": "AllTemperatureDimensions",
+    "local": true
+  },
+  "graphs": [
+    {
+      "graphType": "donuts",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "NodeLevelZoneSummary",
+      "options": {
+        "gridPosition": {
+          "row": 0,
+          "col": 0,
+          "rowSpan": 3,
+          "colSpan": 4
+        },
+        "label": "Shard Distribution",
+        "radius": 8,
+        "arcWidth": 3,
+        "remainColor": "black",
+        "yPadding": 2,
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "lines",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "mean",
+      "options": {
+        "gridPosition": {
+          "row": 0,
+          "col": 4,
+          "rowSpan": 4,
+          "colSpan": 4
+        },
+        "label": "Shard_Size_In_Bytes - mean",
+        "showNthLabel": 3,
+        "showLegend": true,
+        "legend": { "width": 10 },
+        "xAxis": [
+          "0:00",
+          "0:05",
+          "0:10",
+          "0:15",
+          "0:20",
+          "0:25",
+          "0:30",
+          "0:35",
+          "0:40",
+          "0:45",
+          "0:50",
+          "0:55"
+        ],
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "lines",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "total",
+      "options": {
+        "gridPosition": {
+          "row": 0,
+          "col": 8,
+          "rowSpan": 4,
+          "colSpan": 4
+        },
+        "label": "Shard_Size_In_Bytes - total",
+        "showNthLabel": 3,
+        "showLegend": true,
+        "legend": { "width": 10 },
+        "xAxis": [
+          "0:00",
+          "0:05",
+          "0:10",
+          "0:15",
+          "0:20",
+          "0:25",
+          "0:30",
+          "0:35",
+          "0:40",
+          "0:45",
+          "0:50",
+          "0:55"
+        ],
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "tables",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "HOT",
+      "options": {
+        "gridPosition": {
+          "row": 4,
+          "col": 0,
+          "rowSpan": 4,
+          "colSpan": 6
+        },
+        "columns": "index_name,shard_id,CPU_Utilization,Heap_AllocRate,Shard_Size_In_Bytes",
+        "label": "Shard_Size_In_Bytes - HOT",
+        "keys": false,
+        "fg": "green",
+        "selectedFg": "green",
+        "selectedBg": "",
+        "columnSpacing": 1,
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "tables",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "WARM",
+      "options": {
+        "gridPosition": {
+          "row": 4,
+          "col": 6,
+          "rowSpan": 4,
+          "colSpan": 6
+        },
+        "columns": "index_name,shard_id,CPU_Utilization,Heap_AllocRate,Shard_Size_In_Bytes",
+        "label": "Shard_Size_In_Bytes - WARM",
+        "keys": false,
+        "fg": "green",
+        "selectedFg": "green",
+        "selectedBg": "",
+        "columnSpacing": 1,
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "tables",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "LUKE_WARM",
+      "options": {
+        "gridPosition": {
+          "row": 8,
+          "col": 0,
+          "rowSpan": 4,
+          "colSpan": 6
+        },
+        "columns": "index_name,shard_id,CPU_Utilization,Heap_AllocRate,Shard_Size_In_Bytes",
+        "label": "Shard_Size_In_Bytes - LUKE_WARM",
+        "keys": false,
+        "fg": "green",
+        "selectedFg": "green",
+        "selectedBg": "",
+        "columnSpacing": 1,
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "tables",
+      "dimension": "Shard_Size_In_Bytes",
+      "graphParams": "COLD",
+      "options": {
+        "gridPosition": {
+          "row": 8,
+          "col": 6,
+          "rowSpan": 4,
+          "colSpan": 6
+        },
+        "columns": "index_name,shard_id,CPU_Utilization,Heap_AllocRate,Shard_Size_In_Bytes",
+        "label": "Shard_Size_In_Bytes - COLD",
+        "keys": false,
+        "fg": "green",
+        "selectedFg": "green",
+        "selectedBg": "",
+        "columnSpacing": 1,
+        "refreshInterval": 5000
+      }
+    }
+  ]
+}

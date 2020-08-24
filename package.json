@@ -1,6 +1,6 @@
 {
   "name": "@aws/opendistro-for-elasticsearch-perftop",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
   "author": "Amazon Web Services",
   "bin": {
@@ -22,9 +22,12 @@
   "dependencies": {
     "argparse": "1.0.10",
     "blessed": "0.1.54",
-    "blessed-contrib": "^4.8.19",
+    "blessed-contrib": "^4.8.20",
     "console-stamp": "0.2.7",
-    "pkg": "^4.4.7"
+    "pkg": "^4.4.9"
+  },
+  "pkg": {
+    "assets": "node_modules/blessed/**/*"
   },
   "devDependencies": {
     "eslint": "^5.12.1",

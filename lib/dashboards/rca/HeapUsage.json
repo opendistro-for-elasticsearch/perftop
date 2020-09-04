@@ -1,0 +1,161 @@
+{
+  "endpoint": "localhost:9600",
+  "gridOptions": {
+    "rows": 12,
+    "cols": 12
+  },
+  "queryParams": {
+    "name": "HighHeapUsageClusterRca",
+    "local": null
+  },
+  "graphs": [
+    {
+      "graphType": "donuts",
+      "graphParams": "HotClusterSummary",
+      "options": {
+        "gridPosition": {
+          "row": 0,
+          "col": 0,
+          "rowSpan": 3,
+          "colSpan": 4
+        },
+        "label": "Node Overview",
+        "radius": 8,
+        "arcWidth": 3,
+        "remainColor": "black",
+        "yPadding": 2,
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "lines",
+      "graphParams": "avg",
+      "options": {
+        "gridPosition": {
+          "row": 4,
+          "col": 0,
+          "rowSpan": 4,
+          "colSpan": 4
+        },
+        "label": "HotResourceSummary - avg",
+        "showNthLabel": 3,
+        "showLegend": true,
+        "legend": { "width": 10 },
+        "xAxis": [
+          "0:00",
+          "0:05",
+          "0:10",
+          "0:15",
+          "0:20",
+          "0:25",
+          "0:30",
+          "0:35",
+          "0:40",
+          "0:45",
+          "0:50",
+          "0:55"
+        ],
+        "refreshInterval": 5000
+      }
+    },
+    {
+      "graphType": "lines",
+      "graphParams": "min",
+      "options": {
+        "gridPosition": {
+          "row": 4,
+          "col": 4,
+          "rowSpan": 4,
+          "colSpan": 4
+        },
+        "label": "HotResourceSummary - min",
+        "showNthLabel": 3,
+        "showLegend": true,
+        "legend": { "width": 10 },
+        "xAxis": [
+          "0:00",
+          "0:05",
+          "0:10",
+          "0:15",
+          "0:20",
+          "0:25",
+          "0:30",
+          "0:35",
+          "0:40",
+          "0:45",
+          "0:50",
+          "0:55"
+        ],
+        "refreshInterval": 5000
+      }
+    },{
+      "graphType": "lines",
+      "graphParams": "max",
+      "options": {
+        "gridPosition": {
+          "row": 4,
+          "col": 8,
+          "rowSpan": 4,
+          "colSpan": 4
+        },
+        "label": "HotResourceSummary - max",
+        "showNthLabel": 3,
+        "showLegend": true,
+        "legend": { "width": 10 },
+        "xAxis": [
+          "0:00",
+          "0:05",
+          "0:10",
+          "0:15",
+          "0:20",
+          "0:25",
+          "0:30",
+          "0:35",
+          "0:40",
+          "0:45",
+          "0:50",
+          "0:55"
+        ],
+        "refreshInterval": 5000
+      }
+    },{
+      "graphType": "tables",
+      "graphParams": "TopConsumerSummary",
+      "options": {
+        "gridPosition": {
+          "row": 0,
+          "col": 4,
+          "rowSpan": 4,
+          "colSpan": 6
+        },
+        "columns": "SEGMENTS_MEMORY,TERMS_MEMORY,NORMS_MEMORY",
+        "label": "TopConsumerSummary",
+        "keys": false,
+        "fg": "green",
+        "selectedFg": "green",
+        "selectedBg": "",
+        "columnSpacing": 1,
+        "refreshInterval": 5000
+      }
+    },{
+      "graphType": "tables",
+      "graphParams": "generalSummary",
+      "options": {
+        "gridPosition": {
+          "row": 8,
+          "col": 0,
+          "rowSpan": 4,
+          "colSpan": 12
+        },
+        "columns": "node_id,host_address,resource_type,resource_metric,threshold,value",
+        "label": "Shard_Size_In_Bytes - HOT",
+        "keys": false,
+        "fg": "green",
+        "selectedFg": "green",
+        "selectedBg": "",
+        "columnSpacing": 1,
+        "refreshInterval": 5000
+      }
+    }
+  ]
+}

@@ -44,10 +44,20 @@ jobs:
 
     - name: Upload Artifacts to S3
       run: |
-        s3_path=s3://artifacts.opendistroforelasticsearch.amazon.com/downloads
-        aws s3 cp artifacts/*MACOS*.zip $s3_path/perftop/
-        aws s3 cp artifacts/*LINUX*.zip $s3_path/perftop/
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/downloads/*"
+        macos=`ls artifacts/*MACOS*.zip`
+        linux=`ls artifacts/*LINUX*.zip`
+
+        # Inject the build number before the suffix
+        macos_outfile=`basename ${macos%.zip}-build-${GITHUB_RUN_NUMBER}.zip`
+        linux_outfile=`basename ${linux%.zip}-build-${GITHUB_RUN_NUMBER}.zip`
+
+        s3_prefix="s3://staging.artifacts.opendistroforelasticsearch.amazon.com/snapshot/elasticsearch-clients/perftop/"
+
+        echo "Copying ${macos} to ${s3_prefix}${macos_outfile}"
+        aws s3 cp --quiet $macos ${s3_prefix}${macos_outfile}
+
+        echo "Copying ${linux} to ${s3_prefix}${linux_outfile}"
+        aws s3 cp --quiet $linux ${s3_prefix}${linux_outfile}
 
     - name: Upload Workflow Artifacts
       uses: actions/upload-artifact@v1

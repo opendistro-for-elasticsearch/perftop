@@ -1,4 +1,4 @@
-## 2020-10-15 Version 1.11.0.0
+## 2020-10-15 Version 1.11.0.0 (Current)
 
 This is release of the Open Distro PerfTop, which is compatible with Open Distro Performance Analyzer 1.11.
 Supported Elasticsearch version 7.9.1

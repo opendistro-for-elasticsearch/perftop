@@ -1,6 +1,6 @@
 {
   "name": "@aws/opendistro-for-elasticsearch-perftop",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
   "author": "Amazon Web Services",
   "bin": {

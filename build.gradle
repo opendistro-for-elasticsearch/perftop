@@ -24,7 +24,7 @@ node {
 }
 
 ext {
-    opendistroVersion = '1.11.0'
+    opendistroVersion = '1.12.0'
     isSnapshot = "true" == System.getProperty("build.snapshot", "true")
     isLinux = "true" == System.getProperty("build.linux", "false")
     isMacOS = "true" == System.getProperty("build.macos", "false")

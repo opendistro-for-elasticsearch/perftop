@@ -1,12 +1,9 @@
 name: CD
 
 on:
-  # push:
-  #   tags:
-  #     - 'v*'
   push:
-    branches:
-      - "release-workflow-patch"
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -47,8 +44,8 @@ jobs:
 
     - name: Upload Artifacts to S3
       run: |
-        macos=`ls artifacts/*MACOS*.zip`
-        linux=`ls artifacts/*LINUX*.zip`
+        macos=`ls artifacts/*macos*.zip`
+        linux=`ls artifacts/*linux*.zip`
 
         # Inject the build number before the suffix
         macos_outfile=`basename ${macos%.zip}-build-${GITHUB_RUN_NUMBER}.zip`
@@ -62,8 +59,8 @@ jobs:
         echo "Copying ${linux} to ${s3_prefix}${linux_outfile}"
         aws s3 cp --quiet $linux ${s3_prefix}${linux_outfile}
 
-    # - name: Upload Workflow Artifacts
-    #   uses: actions/upload-artifact@v1
-    #   with:
-    #     name: artifacts
-    #     path: artifacts/
+    - name: Upload Workflow Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifacts
+        path: artifacts/

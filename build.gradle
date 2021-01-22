@@ -33,10 +33,10 @@ ext {
 group = "com.amazon.opendistroforelasticsearch"
 version = "${opendistroVersion}.0"
 if (isLinux) {
-    version += "-LINUX"
+    version += "-linux-x64"
 }
 if (isMacOS) {
-    version += "-MACOS"
+    version += "-macos-x64"
 }
 if (isSnapshot) {
     version += "-SNAPSHOT"

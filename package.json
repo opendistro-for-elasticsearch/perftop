@@ -4,14 +4,14 @@
   "description": "PerfTop CLI tool for Open Distro Performance Analyzer",
   "author": "Amazon Web Services",
   "bin": {
-    "perf-top": "./bin/global.js"
+    "opendistro-perf-top": "./bin/global.js"
   },
   "preferGlobal": "true",
   "scripts": {
-    "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/perf-top-linux",
-    "build-macos": "./node_modules/.bin/pkg . --targets macos --output ./build/perf-top-macos",
+    "build-linux": "./node_modules/.bin/pkg . --targets linux --output ./build/opendistro-perf-top-linux",
+    "build-macos": "./node_modules/.bin/pkg . --targets macos --output ./build/opendistro-perf-top-macos",
     "clean": "rm -rf ./build 2>/dev/null || true && rm -rf ./node_modules",
-    "lint": "./node_modules/.bin/eslint lib/perf-top/ lib/bin.js bin/global.js",
+    "lint": "./node_modules/.bin/eslint lib/opendistro-perf-top/ lib/bin.js bin/global.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

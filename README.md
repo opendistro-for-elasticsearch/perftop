@@ -80,12 +80,12 @@ Supported platforms: Linux, macOS
 
 npm:
 ```bash
-perf-top --dashboard NodeAnalysis
+opendistro-perf-top --dashboard NodeAnalysis
 ```
 Excutables:
 
 ```
-./perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
+./opendistro-perf-top-${PLATFORM} --dashboard $JSON --endpoint $ENDPOINT
 ```
 
 ## Build
@@ -97,7 +97,7 @@ Prerequisites:
 1. Clone/download from Github
 2. Run `./gradlew build -Dbuild.linux={true/false} -Dbuild.macos={true/false}`. This will run the following:
    1. `npm install` - locally installs dependencies
-   2. `npm run build-{linux/macos}` - creates "perf-top-{linux/macos}" executables.
+   2. `npm run build-{linux/macos}` - creates "opendistro-perf-top-{linux/macos}" executables.
 3. For cleaning, run `./gradlew clean` which will run:
    1. `npm run clean` - deletes locally installed dependencies and executables
 

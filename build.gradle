@@ -111,4 +111,4 @@ bundlePlugin {
 // The testingConventions task now mandates atleast one of the integ test tasks to be performed.
 // Since perftop is not really a plugin on its own, it fails the plugin install step during the integ tests. So, 
 // skip running testingConventions task.
-gradle.startParameter.excludedTaskNames += ["integTestRunner", "testingConventions"]
+gradle.startParameter.excludedTaskNames += ["testingConventions"]

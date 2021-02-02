@@ -30,8 +30,8 @@ jobs:
         ./gradlew build -Dbuild.snapshot=false -Dbuild.linux=true
         ./gradlew build -Dbuild.snapshot=false -Dbuild.macos=true
         mkdir artifacts
-        macos_artifact=`ls build/distributions/*MACOS*.zip`
-        linux_artifact=`ls build/distributions/*LINUX*.zip`
+        macos_artifact=`ls build/distributions/*macos*.zip`
+        linux_artifact=`ls build/distributions/*linux*.zip`
         cp $macos_artifact artifacts/
         cp $linux_artifact artifacts/
 

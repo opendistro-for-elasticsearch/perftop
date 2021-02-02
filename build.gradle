@@ -33,10 +33,10 @@ ext {
 group = "com.amazon.opendistroforelasticsearch"
 version = "${opendistroVersion}.0"
 if (isLinux) {
-    version += "-LINUX"
+    version += "-linux-x64"
 }
 if (isMacOS) {
-    version += "-MACOS"
+    version += "-macos-x64"
 }
 if (isSnapshot) {
     version += "-SNAPSHOT"
@@ -83,23 +83,23 @@ clean {
 // We are excluding plugin descriptor for PerfTop
 // The info here could be random
 esplugin {
-    name 'perf-top'
+    name 'opendistro-perf-top'
     description 'PerfTop'
     classname 'com.amazon.opendistro.elasticsearch.performanceanalyzer.PerformanceAnalyzerPlugin'
 }
 
 
 bundlePlugin {
-    exclude "perf-top*.jar"
+    exclude "opendistro-perf-top*.jar"
     exclude "plugin-descriptor.properties"
     if (isLinux) {
         from ("build/") {
-            include "perf-top-linux"
+            include "opendistro-perf-top-linux"
         }
     }
     if (isMacOS) {
         from ("build/") {
-            include "perf-top-macos"
+            include "opendistro-perf-top-macos"
         }
     }
     from ("dashboards/") {

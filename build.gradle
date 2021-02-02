@@ -1,7 +1,7 @@
 buildscript {
 
     ext {
-        es_version = System.getProperty("es.version", "7.9.1")
+        es_version = System.getProperty("es.version", "7.10.2")
     }
     // This isn't applying from repositories.gradle so repeating it here
     repositories {
@@ -24,7 +24,7 @@ node {
 }
 
 ext {
-    opendistroVersion = '1.12.0'
+    opendistroVersion = '1.13.0'
     isSnapshot = "true" == System.getProperty("build.snapshot", "true")
     isLinux = "true" == System.getProperty("build.linux", "false")
     isMacOS = "true" == System.getProperty("build.macos", "false")
@@ -33,10 +33,10 @@ ext {
 group = "com.amazon.opendistroforelasticsearch"
 version = "${opendistroVersion}.0"
 if (isLinux) {
-    version += "-LINUX"
+    version += "-linux-x64"
 }
 if (isMacOS) {
-    version += "-MACOS"
+    version += "-macos-x64"
 }
 if (isSnapshot) {
     version += "-SNAPSHOT"
@@ -83,23 +83,23 @@ clean {
 // We are excluding plugin descriptor for PerfTop
 // The info here could be random
 esplugin {
-    name 'perf-top'
+    name 'opendistro-perf-top'
     description 'PerfTop'
     classname 'com.amazon.opendistro.elasticsearch.performanceanalyzer.PerformanceAnalyzerPlugin'
 }
 
 
 bundlePlugin {
-    exclude "perf-top*.jar"
+    exclude "opendistro-perf-top*.jar"
     exclude "plugin-descriptor.properties"
     if (isLinux) {
         from ("build/") {
-            include "perf-top-linux"
+            include "opendistro-perf-top-linux"
         }
     }
     if (isMacOS) {
         from ("build/") {
-            include "perf-top-macos"
+            include "opendistro-perf-top-macos"
         }
     }
     from ("dashboards/") {
@@ -111,4 +111,4 @@ bundlePlugin {
 // The testingConventions task now mandates atleast one of the integ test tasks to be performed.
 // Since perftop is not really a plugin on its own, it fails the plugin install step during the integ tests. So, 
 // skip running testingConventions task.
-gradle.startParameter.excludedTaskNames += ["integTestRunner", "testingConventions"]
+gradle.startParameter.excludedTaskNames += ["testingConventions"]
